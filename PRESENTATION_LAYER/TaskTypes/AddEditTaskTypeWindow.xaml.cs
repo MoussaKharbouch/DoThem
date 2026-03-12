@@ -20,7 +20,6 @@ namespace PRESENTATION_LAYER.TaskTypes
     /// <summary>
     /// Interaction logic for AddEditTaskTypeWindow.xaml
     /// </summary>
-    /// 
     public partial class AddEditTaskTypeWindow : Window
     {
 

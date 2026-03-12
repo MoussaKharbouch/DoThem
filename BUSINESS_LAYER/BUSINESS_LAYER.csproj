@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Task.cs" />
     <Compile Include="TaskType.cs" />
-    <Compile Include="clsUser.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

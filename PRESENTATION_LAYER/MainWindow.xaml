@@ -106,7 +106,7 @@
                         Padding="15">
 
                     <Grid>
-                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ScrollViewer VerticalScrollBarVisibility="Hidden">
                             <StackPanel x:Name="spTasks"/>
                         </ScrollViewer>
 
