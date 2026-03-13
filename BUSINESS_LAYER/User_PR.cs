@@ -9,7 +9,7 @@ namespace BUSINESS_LAYER
     /// Handles user-related business logic and communicates
     /// with the Data Layer.
     /// </summary>
-    public class User
+    public class User_PR
     {
         /// <summary>
         /// Defines whether the object is in Add or Update mode.
@@ -45,7 +45,7 @@ namespace BUSINESS_LAYER
         /// <summary>
         /// Default constructor used when creating new user.
         /// </summary>
-        public User()
+        public User_PR()
         {
             UserID = -1;
             Username = string.Empty;
@@ -58,7 +58,7 @@ namespace BUSINESS_LAYER
         /// <summary>
         /// Constructor used when loading existing user from database.
         /// </summary>
-        public User(int UserID, string Username, string Password, enStatus Status)
+        public User_PR(int UserID, string Username, string Password, enStatus Status)
         {
             this.UserID = UserID;
             this.Username = Username;
@@ -72,35 +72,35 @@ namespace BUSINESS_LAYER
         /// Finds user by username and password.
         /// Returns null if not found.
         /// </summary>
-        public static User FindUser(string Username, string Password)
+        public static User_PR FindUser(string Username, string Password)
         {
             int UserID = -1;
             short status = 1;
 
-            UsersData.FindUser(Username, Password, ref UserID, ref status);
+            UsersData_PR.FindUser(Username, Password, ref UserID, ref status);
 
             if (UserID == -1)
                 return null;
 
-            return new User(UserID, Username, Password, (enStatus)status);
+            return new User_PR(UserID, Username, Password, (enStatus)status);
         }
 
         /// <summary>
         /// Finds user by ID.
         /// Returns null if not found.
         /// </summary>
-        public static User FindUser(int UserID)
+        public static User_PR FindUser(int UserID)
         {
             string Username = string.Empty;
             string Password = string.Empty;
             short status = 0;
 
-            UsersData.FindUser(UserID, ref Username, ref Password, ref status);
+            UsersData_PR.FindUser(UserID, ref Username, ref Password, ref status);
 
             if (Username == string.Empty && Password == string.Empty && status == 0)
                 return null;
 
-            return new User(UserID, Username, Password, (enStatus)status);
+            return new User_PR(UserID, Username, Password, (enStatus)status);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace BUSINESS_LAYER
 
             int UserID = this.UserID;
 
-            bool succeeded = UsersData.AddUser(ref UserID, Username, Password, (short)Status);
+            bool succeeded = UsersData_PR.AddUser(ref UserID, Username, Password, (short)Status);
 
             this.UserID = UserID;
 
@@ -125,10 +125,10 @@ namespace BUSINESS_LAYER
         /// </summary>
         private bool Update()
         {
-            if (UsersData.DoesUsernameExist(Username, UserID))
+            if (UsersData_PR.DoesUsernameExist(Username, UserID))
                 return false;
 
-            return UsersData.UpdateUser(UserID, Username, Password, (short)Status);
+            return UsersData_PR.UpdateUser(UserID, Username, Password, (short)Status);
         }
 
         /// <summary>
@@ -160,10 +160,10 @@ namespace BUSINESS_LAYER
         /// </summary>
         public static bool DeleteUser(int UserID)
         {
-            if (!UsersData.DoesUserExist(UserID))
+            if (!UsersData_PR.DoesUserExist(UserID))
                 return false;
 
-            return UsersData.DeleteUser(UserID);
+            return UsersData_PR.DeleteUser(UserID);
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace BUSINESS_LAYER
         /// </summary>
         public static bool DoesUserExist(string Username, string Password)
         {
-            return UsersData.DoesUserExist(Username, Password);
+            return UsersData_PR.DoesUserExist(Username, Password);
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace BUSINESS_LAYER
         /// </summary>
         public static bool DoesUsernameExist(string Username)
         {
-            return UsersData.DoesUsernameExist(Username);
+            return UsersData_PR.DoesUsernameExist(Username);
         }
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace BUSINESS_LAYER
         /// </summary>
         static public DataTable GetUsers()
         {
-            return UsersData.GetUsers();
+            return UsersData_PR.GetUsers();
         }
     }
 }

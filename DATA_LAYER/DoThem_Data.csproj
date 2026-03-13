@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{06143257-1F49-4A11-A484-AF3F86E796E1}</ProjectGuid>
+    <ProjectGuid>{4E147064-FF77-4748-87E1-FC64A7C28E6D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BUSINESS_LAYER</RootNamespace>
-    <AssemblyName>BUSINESS_LAYER</AssemblyName>
+    <RootNamespace>DATA_LAYER</RootNamespace>
+    <AssemblyName>DATA_LAYER</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -40,16 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Task.cs" />
-    <Compile Include="TaskType.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="DataAccessSettings.cs" />
+    <Compile Include="TasksData_PR.cs" />
+    <Compile Include="TaskTypesData_PR.cs" />
+    <Compile Include="UsersData_PR.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DATA_LAYER\DATA_LAYER.csproj">
-      <Project>{4e147064-ff77-4748-87e1-fc64a7c28e6d}</Project>
-      <Name>DATA_LAYER</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

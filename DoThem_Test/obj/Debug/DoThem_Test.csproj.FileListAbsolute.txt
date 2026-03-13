@@ -1,0 +1,14 @@
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Test\bin\Debug\DoThem_Test.exe.config
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Test\bin\Debug\DoThem_Test.exe
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Test\bin\Debug\DoThem_Test.pdb
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Test\obj\Debug\DoThem_Test.csproj.AssemblyReference.cache
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Test\obj\Debug\DoThem_Test.csproj.CoreCompileInputs.cache
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Test\obj\Debug\DoThem_Test.exe
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Test\obj\Debug\DoThem_Test.pdb
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Test\bin\Debug\BUSINESS_LAYER.dll
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Test\bin\Debug\DoThem_Domain.dll
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Test\bin\Debug\DATA_LAYER.dll
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Test\bin\Debug\BUSINESS_LAYER.pdb
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Test\bin\Debug\DoThem_Domain.pdb
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Test\bin\Debug\DATA_LAYER.pdb
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Test\obj\Debug\DoThem_Test.csproj.CopyComplete

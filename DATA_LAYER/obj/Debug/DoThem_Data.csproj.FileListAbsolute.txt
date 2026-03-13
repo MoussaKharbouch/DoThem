@@ -1,0 +1,6 @@
+C:\Users\Moussa\Documents\GitHub\Dothem\DATA_LAYER\bin\Debug\DATA_LAYER.dll
+C:\Users\Moussa\Documents\GitHub\Dothem\DATA_LAYER\bin\Debug\DATA_LAYER.pdb
+C:\Users\Moussa\Documents\GitHub\Dothem\DATA_LAYER\obj\Debug\DoThem_Data.csproj.AssemblyReference.cache
+C:\Users\Moussa\Documents\GitHub\Dothem\DATA_LAYER\obj\Debug\DoThem_Data.csproj.CoreCompileInputs.cache
+C:\Users\Moussa\Documents\GitHub\Dothem\DATA_LAYER\obj\Debug\DATA_LAYER.dll
+C:\Users\Moussa\Documents\GitHub\Dothem\DATA_LAYER\obj\Debug\DATA_LAYER.pdb

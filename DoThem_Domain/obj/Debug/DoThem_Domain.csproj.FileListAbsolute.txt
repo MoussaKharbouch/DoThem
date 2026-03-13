@@ -1,0 +1,6 @@
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Domain\bin\Debug\DoThem_Domain.dll
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Domain\bin\Debug\DoThem_Domain.pdb
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Domain\obj\Debug\DoThem_Domain.csproj.AssemblyReference.cache
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Domain\obj\Debug\DoThem_Domain.csproj.CoreCompileInputs.cache
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Domain\obj\Debug\DoThem_Domain.dll
+C:\Users\Moussa\Documents\GitHub\Dothem\DoThem_Domain\obj\Debug\DoThem_Domain.pdb

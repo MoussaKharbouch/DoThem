@@ -8,7 +8,7 @@ namespace DATA_LAYER
     /// Provides data access methods for managing Task Types in the database.
     /// Handles CRUD operations and retrieval for TaskType entities.
     /// </summary>
-    public class TaskTypesData
+    public class TaskTypesData_PR
     {
         /// <summary>
         /// Retrieves a task type by its ID, populating all related fields if found.

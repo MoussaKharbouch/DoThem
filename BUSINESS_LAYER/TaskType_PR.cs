@@ -58,7 +58,7 @@ namespace BUSINESS_LAYER
             set
             {
                 // Load user from database
-                User User = User.FindUser(value);
+                User_PR User = User_PR.FindUser(value);
 
                 // If user does not exist, do not assign
                 if (User == null)
@@ -72,7 +72,7 @@ namespace BUSINESS_LAYER
         /// <summary>
         /// Navigation property for related User.
         /// </summary>
-        public User User { get; set; }
+        public User_PR User { get; set; }
 
         /// <summary>
         /// Default constructor used when creating a new TaskType.
@@ -85,7 +85,7 @@ namespace BUSINESS_LAYER
             Color = string.Empty;
             Description = string.Empty;
             UserID = -1;
-            User = new User();
+            User = new User_PR();
 
             Mode = enMode.Add;
         }
@@ -103,7 +103,7 @@ namespace BUSINESS_LAYER
             this.Color = Color;
             this.Description = Description;
             this.UserID = UserID;
-            this.User = User.FindUser(UserID);
+            this.User = User_PR.FindUser(UserID);
 
             Mode = enMode.Update;
         }
@@ -120,7 +120,7 @@ namespace BUSINESS_LAYER
             string Description = string.Empty;
             int UserID = -1;
 
-            TaskTypesData.FindTaskType(TaskTypeID, ref Name, ref DateOfCreation, ref Color, ref Description, ref UserID);
+            TaskTypesData_PR.FindTaskType(TaskTypeID, ref Name, ref DateOfCreation, ref Color, ref Description, ref UserID);
 
             if (Name == string.Empty)
                 return null;
@@ -140,7 +140,7 @@ namespace BUSINESS_LAYER
             string Description = string.Empty;
             int UserID = -1;
 
-            TaskTypesData.FindTaskType(Name, ref TaskTypeID, ref DateOfCreation, ref Color, ref Description, ref UserID);
+            TaskTypesData_PR.FindTaskType(Name, ref TaskTypeID, ref DateOfCreation, ref Color, ref Description, ref UserID);
 
             if (TaskTypeID == -1)
                 return null;
@@ -155,7 +155,7 @@ namespace BUSINESS_LAYER
         {
             int TaskTypeID = this.TaskTypeID;
 
-            bool succeeded = TaskTypesData.AddTaskType(ref TaskTypeID, Name, DateOfCreation, Color, Description, UserID);
+            bool succeeded = TaskTypesData_PR.AddTaskType(ref TaskTypeID, Name, DateOfCreation, Color, Description, UserID);
 
             this.TaskTypeID = TaskTypeID;
 
@@ -167,7 +167,7 @@ namespace BUSINESS_LAYER
         /// </summary>
         private bool Update()
         {
-            return TaskTypesData.UpdateTaskType(TaskTypeID, Name, DateOfCreation, Color, Description, UserID);
+            return TaskTypesData_PR.UpdateTaskType(TaskTypeID, Name, DateOfCreation, Color, Description, UserID);
         }
 
         /// <summary>
@@ -203,7 +203,7 @@ namespace BUSINESS_LAYER
             if (!DoesTaskTypeExist(TaskTypeID))
                 return false;
 
-            return TaskTypesData.DeleteTaskType(TaskTypeID);
+            return TaskTypesData_PR.DeleteTaskType(TaskTypeID);
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace BUSINESS_LAYER
         /// </summary>
         public static bool DoesTaskTypeExist(int TaskTypeID)
         {
-            return TaskTypesData.DoesTaskTypeExist(TaskTypeID);
+            return TaskTypesData_PR.DoesTaskTypeExist(TaskTypeID);
         }
 
         /// <summary>
@@ -220,7 +220,7 @@ namespace BUSINESS_LAYER
         /// </summary>
         static public DataTable GetTaskTypes(int UserID)
         {
-            DataTable dt = TaskTypesData.GetTaskTypes(UserID);
+            DataTable dt = TaskTypesData_PR.GetTaskTypes(UserID);
 
             // If user has no task types, create a default one
             if (dt.Rows.Count == 0)
@@ -235,7 +235,7 @@ namespace BUSINESS_LAYER
                 defaultType.Save();
 
                 // Reload task types after creation
-                dt = TaskTypesData.GetTaskTypes(UserID);
+                dt = TaskTypesData_PR.GetTaskTypes(UserID);
             }
 
             return dt;

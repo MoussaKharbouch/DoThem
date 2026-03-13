@@ -1,0 +1,11 @@
+C:\Users\Moussa\Documents\GitHub\Dothem\BUSINESS_LAYER\bin\Debug\BUSINESS_LAYER.dll
+C:\Users\Moussa\Documents\GitHub\Dothem\BUSINESS_LAYER\bin\Debug\BUSINESS_LAYER.pdb
+C:\Users\Moussa\Documents\GitHub\Dothem\BUSINESS_LAYER\bin\Debug\DATA_LAYER.dll
+C:\Users\Moussa\Documents\GitHub\Dothem\BUSINESS_LAYER\bin\Debug\DoThem_Domain.dll
+C:\Users\Moussa\Documents\GitHub\Dothem\BUSINESS_LAYER\bin\Debug\DATA_LAYER.pdb
+C:\Users\Moussa\Documents\GitHub\Dothem\BUSINESS_LAYER\bin\Debug\DoThem_Domain.pdb
+C:\Users\Moussa\Documents\GitHub\Dothem\BUSINESS_LAYER\obj\Debug\DoThem_Business.csproj.AssemblyReference.cache
+C:\Users\Moussa\Documents\GitHub\Dothem\BUSINESS_LAYER\obj\Debug\DoThem_Business.csproj.CoreCompileInputs.cache
+C:\Users\Moussa\Documents\GitHub\Dothem\BUSINESS_LAYER\obj\Debug\DoThem_Business.csproj.CopyComplete
+C:\Users\Moussa\Documents\GitHub\Dothem\BUSINESS_LAYER\obj\Debug\BUSINESS_LAYER.dll
+C:\Users\Moussa\Documents\GitHub\Dothem\BUSINESS_LAYER\obj\Debug\BUSINESS_LAYER.pdb
