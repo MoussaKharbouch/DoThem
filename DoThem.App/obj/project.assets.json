@@ -1,11 +1,65 @@
 {
   "version": 3,
   "targets": {
-    "net10.0": {}
+    "net10.0": {
+      "DoThem.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/DoThem.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DoThem.Domain.dll": {}
+        }
+      },
+      "DoThem.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/DoThem.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DoThem.Infrastructure.dll": {}
+        }
+      },
+      "DoThem.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "DoThem.Domain": "1.0.0",
+          "DoThem.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DoThem.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DoThem.Services.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "DoThem.Domain/1.0.0": {
+      "type": "project",
+      "path": "../DoThem.Domain/DoThem.Domain.csproj",
+      "msbuildProject": "../DoThem.Domain/DoThem.Domain.csproj"
+    },
+    "DoThem.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../DoThem.Infrastructure/DoThem.Infrastructure.csproj",
+      "msbuildProject": "../DoThem.Infrastructure/DoThem.Infrastructure.csproj"
+    },
+    "DoThem.Services/1.0.0": {
+      "type": "project",
+      "path": "../DoThem.Services/DoThem.Services.csproj",
+      "msbuildProject": "../DoThem.Services/DoThem.Services.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net10.0": []
+    "net10.0": [
+      "DoThem.Domain >= 1.0.0",
+      "DoThem.Services >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Moussa\\.nuget\\packages\\": {}
@@ -33,7 +87,14 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Domain\\DoThem.Domain.csproj": {
+              "projectPath": "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Domain\\DoThem.Domain.csproj"
+            },
+            "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Services\\DoThem.Services.csproj": {
+              "projectPath": "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Services\\DoThem.Services.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
