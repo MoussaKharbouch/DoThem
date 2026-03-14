@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="DoThem.App/DoThem.App.csproj" />
+  <Project Path="DoThem.Domain/DoThem.Domain.csproj" />
+  <Project Path="DoThem.Infrastructure/DoThem.Infrastructure.csproj" />
+  <Project Path="DoThem.Services/DoThem.Services.csproj" />
+</Solution>
