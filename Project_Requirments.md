@@ -44,9 +44,9 @@ Each task includes:
 
 - Title
 - Description
-- Type (user-defined, not limited)
 - Status
 - Creation date
+- Due date
 - Owner (the user who created the task)
 
 ---
