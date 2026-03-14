@@ -82,6 +82,11 @@ namespace PRESENTATION_LAYER
                 lbTaskTypes.Items.Add(TaskType["Name"].ToString());
             }
 
+            if(TaskTypes.Rows.Count != 0)
+            {
+                lbTaskTypes.SelectedIndex = 0;
+            }
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

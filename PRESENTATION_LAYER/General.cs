@@ -20,6 +20,6 @@ namespace PRESENTATION_LAYER
         /// Accessed globally throughout the application to identify the active user
         /// and retrieve user-specific data like tasks and task types
         /// </summary>
-        static internal clsUser User = new clsUser();
+        static internal User User = new User();
     }
 }
