@@ -1,0 +1,6 @@
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\obj\Debug\net10.0\DoThem.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\obj\Debug\net10.0\DoThem.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\obj\Debug\net10.0\DoThem.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\obj\Debug\net10.0\DoThem.Infrastructure.AssemblyInfo.cs
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\obj\Debug\net10.0\DoThem.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\obj\Debug\net10.0\DoThem.Infrastructure.sourcelink.json
