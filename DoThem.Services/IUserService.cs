@@ -1,16 +1,10 @@
-using System;
-using System.Collections.Generic;
+﻿using System;
 using DoThem.Domain;
 
-namespace Dothem.Infrastructure;
+namespace DoThem.Services;
 
-public interface IUserRepository
+public interface IUserService
 {
-
-    /// <summary>
-    /// connect to the database by connection string
-    /// </summary>
-    bool ConnectToDatabase(string connectionString);
 
     /// <summary>
     /// find user by user id
@@ -33,7 +27,7 @@ public interface IUserRepository
     User.UserStatus? GetUserStatus(string username, string password);
 
     /// <summary>
-    /// check if user exists by user's id
+    /// check if user exists by user id
     /// </summary>
     bool DoesUserExist(int userID);
 
@@ -45,20 +39,12 @@ public interface IUserRepository
     /// <summary>
     /// add new user
     /// </summary>
-    /// <returns>
-    /// the id of the new user
-    /// </returns>
     int AddUser(User user);
 
     /// <summary>
     /// update user
     /// </summary>
     bool UpdateUser(int userID, User newUser);
-
-    /// <summary>
-    /// change user's status
-    /// </summary>
-    bool ChangeUserStatus(int userID, User.UserStatus status);
 
     /// <summary>
     /// delete user
@@ -69,5 +55,36 @@ public interface IUserRepository
     /// get users with all fields
     /// </summary>
     List<User> GetUsers();
+
+    /// <summary>
+    /// register user by add it in database
+    /// </summary>
+    bool RegisterUser(User user);
+
+    /// <summary>
+    /// login the user by checking if user is in the database
+    /// and if it is active
+    /// </summary>
+    bool Login(string username, string password);
+
+    /// <summary>
+    /// change the user's status to banned
+    /// </summary>
+    bool BanUser(int userID);
+
+    /// <summary>
+    /// change the user's status to expired
+    /// </summary>
+    bool ExpireUser(int userID);
+
+    /// <summary>
+    /// change the user's status to active
+    /// </summary>
+    bool ActivateUser(int userID);
+
+    /// <summary>
+    /// change the user's password
+    /// </summary>
+    bool ChangePassword(int userID, string newPassword);
 
 }
