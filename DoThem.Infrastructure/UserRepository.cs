@@ -86,7 +86,7 @@ public class UserRepository : IUserRepository
         }
         catch (SqlException ex)
         {
-            throw new Exception("Finding user failed.", ex);
+            throw new Exception("finding user failed.", ex);
         }
 
         return null;
