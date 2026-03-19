@@ -26,7 +26,20 @@ public class UserService : IUserService
 
     public User? FindUser(int userID)
     {
-        return userRepository.FindUser(userID);
+
+        // check if user id is negative
+        if (userID < 0)
+            throw new ArgumentOutOfRangeException("user id cannot be negative.");
+
+        try
+        {
+            return userRepository.FindUser(userID);
+        }
+        catch
+        {
+            throw;
+        }
+
     }
 
     public User? FindUser(string username, string password)

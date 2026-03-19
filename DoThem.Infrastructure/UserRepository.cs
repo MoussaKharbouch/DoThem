@@ -27,7 +27,7 @@ public class UserRepository : IUserRepository
     {
 
         // query to retrieve data using sql statement with user id
-        string query = @"SELECT * FROM dbo.Users
+        string query = @"SELECT * FROM Users
                         Where UserID = @UserID";
 
         try
@@ -86,6 +86,7 @@ public class UserRepository : IUserRepository
         }
         catch (SqlException ex)
         {
+            Console.WriteLine(new Exception("finding user failed.", ex));
             throw new Exception("finding user failed.", ex);
         }
 

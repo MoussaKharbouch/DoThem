@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 namespace DoThem.Domain;
 
@@ -25,6 +26,8 @@ public class User
                 throw new ArgumentNullException("Username cannot be empty or null.");
             if (value.Length > 100)
                 throw new ArgumentException("Username cannot be longer than 100 characters.");
+            if (value.Any(char.IsWhiteSpace))
+                throw new ArgumentException("Username cannot have space.");
 
             _Username = value;
 
@@ -51,6 +54,8 @@ public class User
                 throw new ArgumentException(nameof(value), "Invalid email format.");
             if (value.Length > 100)
                 throw new ArgumentException("Email cannot be longer than 100 characters.");
+            if (value.Any(char.IsWhiteSpace))
+                throw new ArgumentException("Username cannot have space.");
 
             _Email = value;
 

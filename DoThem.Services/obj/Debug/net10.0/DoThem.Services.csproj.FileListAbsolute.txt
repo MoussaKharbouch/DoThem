@@ -4,7 +4,6 @@ C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Services\bin\Debug\net10.0\DoThem
 C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Services\bin\Debug\net10.0\DoThem.Domain.dll
 C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Services\bin\Debug\net10.0\DoThem.Infrastructure.dll
 C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Services\bin\Debug\net10.0\DoThem.Infrastructure.pdb
-C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Services\bin\Debug\net10.0\DoThem.Infrastructure.dll.config
 C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Services\bin\Debug\net10.0\DoThem.Domain.pdb
 C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Services\obj\Debug\net10.0\DoThem.Services.csproj.AssemblyReference.cache
 C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Services\obj\Debug\net10.0\DoThem.Services.GeneratedMSBuildEditorConfig.editorconfig
