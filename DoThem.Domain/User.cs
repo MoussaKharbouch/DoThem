@@ -88,8 +88,9 @@ public class User
     public enum UserStatus { Active = 1, Expired = 2, Banned = 3 }
     public UserStatus Status { get; set; }
 
-    public User(string Username, string Email, string PasswordHash, DateTime CreationDate, UserStatus Status)
+    public User(int UserID, string Username, string Email, string PasswordHash, DateTime CreationDate, UserStatus Status)
     {
+        this.UserID = UserID;
         this.Username = Username;
         this.Email = Email;
         this.PasswordHash = PasswordHash;
