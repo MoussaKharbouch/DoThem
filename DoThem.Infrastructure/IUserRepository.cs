@@ -2,15 +2,10 @@ using System;
 using System.Collections.Generic;
 using DoThem.Domain;
 
-namespace Dothem.Infrastructure;
+namespace DoThem.Infrastructure;
 
 public interface IUserRepository
 {
-
-    /// <summary>
-    /// connect to the database by connection string
-    /// </summary>
-    bool ConnectToDatabase(string connectionString);
 
     /// <summary>
     /// find user by user id

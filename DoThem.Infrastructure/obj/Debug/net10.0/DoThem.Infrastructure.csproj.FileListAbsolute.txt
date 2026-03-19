@@ -4,3 +4,14 @@ C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\obj\Debug\net10.0\
 C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\obj\Debug\net10.0\DoThem.Infrastructure.AssemblyInfo.cs
 C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\obj\Debug\net10.0\DoThem.Infrastructure.csproj.CoreCompileInputs.cache
 C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\obj\Debug\net10.0\DoThem.Infrastructure.sourcelink.json
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\bin\Debug\net10.0\DoThem.Infrastructure.dll.config
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\bin\Debug\net10.0\DoThem.Infrastructure.deps.json
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\bin\Debug\net10.0\DoThem.Infrastructure.dll
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\bin\Debug\net10.0\DoThem.Infrastructure.pdb
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\bin\Debug\net10.0\DoThem.Domain.dll
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\bin\Debug\net10.0\DoThem.Domain.pdb
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\obj\Debug\net10.0\DoThem.I.719E6606.Up2Date
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\obj\Debug\net10.0\DoThem.Infrastructure.dll
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\obj\Debug\net10.0\refint\DoThem.Infrastructure.dll
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\obj\Debug\net10.0\DoThem.Infrastructure.pdb
+C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Infrastructure\obj\Debug\net10.0\ref\DoThem.Infrastructure.dll
