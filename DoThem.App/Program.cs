@@ -124,6 +124,9 @@ namespace DoThem.App
 
             /// Console.WriteLine(userService.GetUserStatus(6));
             /// Console.WriteLine(userService.GetUserStatus("Cancelo", "example"));
+            
+            Console.WriteLine(userService.DoesUserExist(6));
+            Console.WriteLine(userService.DoesUserExist("Cancelo", "example"));
 
         }
 

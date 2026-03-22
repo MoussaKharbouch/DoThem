@@ -272,11 +272,7 @@ public class UserRepository : IUserRepository
 
                 // use scalar to retrieve single value from database
                 object result = command.ExecuteScalar();
-
-                if(result != null && result != DBNull.Value)
-                    return true;
-                else
-                    return false;
+                return (result != null && result != DBNull.Value);
 
             }
 
@@ -290,7 +286,40 @@ public class UserRepository : IUserRepository
 
     public bool DoesUserExist(string username, string password)
     {
-        return false;
+
+        // query to retrieve data using sql statement with user id
+        string query = @"SELECT 1 FROM Users
+                        Where Username = @Username and Password = @Password";
+
+        try
+        {
+
+            /// connect to database
+            /// we have used "using" in every database operation
+            /// for resource management
+            using (SqlConnection connection = new SqlConnection(_ConnectionString))
+            {
+
+                // open the connection to database
+                connection.Open();
+
+                // the command that executes the query using the user id parameter
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Username", username);
+                command.Parameters.AddWithValue("@Password", password);
+
+                // use scalar to retrieve single value from database
+                object result = command.ExecuteScalar();
+                return (result != null && result != DBNull.Value);
+
+            }
+
+        }
+        catch (SqlException ex)
+        {
+            throw new Exception("Getting user's status failed.", ex);
+        }
+
     }
 
     public int AddUser(User user)
