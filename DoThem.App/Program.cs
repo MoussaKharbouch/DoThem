@@ -5,6 +5,7 @@ using DoThem.Services;
 using DoThem.Infrastructure;
 using Microsoft.IdentityModel.Protocols;
 using System.Data;
+using Microsoft.Identity.Client;
 
 namespace DoThem.App
 {
@@ -61,10 +62,8 @@ namespace DoThem.App
             Console.ResetColor();
         }
 
-        static void TestFindUserFunction(int userID)
+        static void TestFindUserFunction(int userID, IUserRepository userRepository)
         {
-
-            IUserRepository userRepository = new UserRepository(ConfigurationManager.ConnectionStrings["DothemDB"].ToString());
 
             User? user = null;
 
@@ -80,10 +79,48 @@ namespace DoThem.App
 
         }
 
+        static void TestFindUserFunction(string username, string password, IUserRepository userRepository)
+        {
+
+            User? user = null;
+
+            try
+            {
+                user = new UserService(userRepository).FindUser(username, password);
+                PrintInfo(user);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+        }
+
+        static void TestUserPart(IUserRepository userRepository)
+        {
+
+            /// --------------------------------------------------------------
+            /// Users testing part
+            /// (you must define the data inside the database so the functions don't return null)
+            /// new user repository, we get the connection string from app.config for security
+            /// we have used configuration manager, you have to download some packages
+
+            TestFindUserFunction(5, userRepository);
+            TestFindUserFunction("John", "example", userRepository);
+            TestFindUserFunction("Supremekai", "example", userRepository);
+
+        }
+
         static void Main(string[] args)
         {
 
-            TestFindUserFunction(1);
+            /// we used independency injection so the user service can use any repository
+            /// that's really important, by changing repository we can change how we deal with data
+            /// we can use another RDBMS such as: sqllite, postgresql...
+            /// and we can use another provider such as: ef core
+            
+            IUserRepository userRepository = new UserRepository(ConfigurationManager.ConnectionStrings["DothemDB"].ToString());
+            TestUserPart(userRepository);
 
             Console.WriteLine("Press Any Key To Close...");
             Console.Read();
