@@ -96,7 +96,74 @@ public class UserRepository : IUserRepository
 
     public User? FindUser(string username, string password)
     {
+
+        // query to retrieve data using sql statement with user id
+        string query = @"SELECT * FROM Users
+                        Where Username = @Username and Password = @Password";
+
+        try
+        {
+
+            /// connect to database
+            /// we have used "using" in every database operation
+            /// for resource management
+            using (SqlConnection connection = new SqlConnection(_ConnectionString))
+            {
+
+                // open the connection to database
+                connection.Open();
+
+                // the command that executes the query using the user id parameter
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Username", username);
+                command.Parameters.AddWithValue("@Password", password);
+
+                // use reader to get data from database
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+
+                    /// if reader doesn't have any rows,
+                    /// we return null
+                    if (!reader.HasRows)
+                        return null;
+
+                    if (reader.Read())
+                    {
+
+                        /// make sure that the values are not null,
+                        /// and if they are we return an exception, 
+                        /// using null-coalescing
+                        /// we don't check username and password because they are alreade the paameters,
+                        /// so they cannot be null in database
+                        string email = reader["Email"]?.ToString() ?? throw new Exception("Email null");
+
+                        // make sure that the user status is in the right range
+                        User.UserStatus status = Enum.IsDefined(typeof(User.UserStatus), Convert.ToInt32(reader["Status"])) ? (User.UserStatus)Convert.ToInt32(reader["Status"]) : User.UserStatus.Expired;
+
+                        return new User(
+                            UserID: Convert.ToInt32(reader["UserID"]),
+                            Username: reader["Username"].ToString()!,
+                            Email: email,
+                            PasswordHash: reader["Password"].ToString()!,
+                            CreationDate: Convert.ToDateTime(reader["CreationDate"]),
+                            Status: (User.UserStatus)Convert.ToInt32(reader["Status"])
+                        );
+
+                    }
+
+                }
+
+            }
+
+        }
+        catch (SqlException ex)
+        {
+            Console.WriteLine(new Exception("finding user failed.", ex));
+            throw new Exception("finding user failed.", ex);
+        }
+
         return null;
+
     }
 
     public User.UserStatus? GetUserStatus(int userID)

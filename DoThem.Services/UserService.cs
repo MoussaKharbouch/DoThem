@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using System.Linq;
 using DoThem.Infrastructure;
 using DoThem.Domain;
 
@@ -44,7 +45,30 @@ public class UserService : IUserService
 
     public User? FindUser(string username, string password)
     {
-        return userRepository.FindUser(username, HashPassword(password));
+
+        // validate username
+        if (string.IsNullOrWhiteSpace(username))
+            throw new ArgumentNullException("Username cannot be empty or null.");
+        if (username.Length > 100)
+            throw new ArgumentException("Username cannot be longer than 100 characters.");
+        if (username.Any(char.IsWhiteSpace))
+            throw new ArgumentException("Username cannot have space.");
+
+        // validate password
+        if (string.IsNullOrWhiteSpace(password))
+            throw new ArgumentNullException("Password cannot be empty or null.");
+        if (password.Length > 50)
+            throw new ArgumentException("Password cannot be longer than 50 characters.");
+
+        try
+        {
+            return userRepository.FindUser(username, password);
+        }
+        catch
+        {
+            throw;
+        }
+
     }
 
     public User.UserStatus? GetUserStatus(int userID)
