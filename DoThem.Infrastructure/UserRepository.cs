@@ -190,8 +190,8 @@ public class UserRepository : IUserRepository
                 // use scalar to retrieve single value from database
                 object result = command.ExecuteScalar();
 
-                if(result != null)
-                    return (User.UserStatus)result;
+                if(result != null && result != DBNull.Value)
+                    return (User.UserStatus)Convert.ToInt32(result);
                 else
                     return null;
 
@@ -207,7 +207,44 @@ public class UserRepository : IUserRepository
 
     public User.UserStatus? GetUserStatus(string username, string password)
     {
-        return User.UserStatus.Expired;
+
+        // query to retrieve data using sql statement with user id
+        string query = @"SELECT Status FROM Users
+                        Where Username = @Username and Password = @Password";
+
+        try
+        {
+
+            /// connect to database
+            /// we have used "using" in every database operation
+            /// for resource management
+            using (SqlConnection connection = new SqlConnection(_ConnectionString))
+            {
+
+                // open the connection to database
+                connection.Open();
+
+                // the command that executes the query using the user id parameter
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Username", username);
+                command.Parameters.AddWithValue("@Password", password);
+
+                // use scalar to retrieve single value from database
+                object result = command.ExecuteScalar();
+
+                if(result != null && result != DBNull.Value)
+                    return (User.UserStatus)Convert.ToInt32(result);
+                else
+                    return null;
+
+            }
+
+        }
+        catch (SqlException ex)
+        {
+            throw new Exception("Getting user's status failed.", ex);
+        }
+
     }
 
     public bool DoesUserExist(int userID)
