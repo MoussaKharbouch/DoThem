@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using Microsoft.Data.SqlClient;
 using DoThem.Domain;
+using System.Data;
 
 namespace DoThem.Infrastructure;
 
@@ -344,7 +345,75 @@ public class UserRepository : IUserRepository
 
     public List<User> GetUsers()
     {
-        return new List<User>();
+
+        List<User> Users = new List<User>();
+
+        // query to retrieve data using sql statement with user id
+        string query = @"SELECT * FROM Users";
+
+        try
+        {
+
+            /// connect to database
+            /// we have used "using" in every database operation
+            /// for resource management
+            using (SqlConnection connection = new SqlConnection(_ConnectionString))
+            {
+
+                // open the connection to database
+                connection.Open();
+
+                // the command that executes the query using the user id parameter
+                SqlCommand command = new SqlCommand(query, connection);
+
+                // use reader to get data from database
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+
+                    /// if reader doesn't have any rows,
+                    /// we return the list directly
+                    if (!reader.HasRows)
+                        return Users;
+
+                    while (reader.Read())
+                    {
+
+                        /// make sure that the values are not null,
+                        /// and if they are we return an exception, 
+                        /// using null-coalescing
+                        string username = reader["Username"]?.ToString() ?? throw new Exception("Username null");
+                        string email = reader["Email"]?.ToString() ?? throw new Exception("Email null");
+                        string password = reader["Password"]?.ToString() ?? throw new Exception("Password null");
+
+                        // make sure that the user status is in the right range
+                        User.UserStatus status = Enum.IsDefined(typeof(User.UserStatus), Convert.ToInt32(reader["Status"])) ? (User.UserStatus)Convert.ToInt32(reader["Status"]) : User.UserStatus.Expired;
+
+                        // Defining user from current row in database
+                        User user = new User(
+                            UserID: Convert.ToInt32(reader["UserID"]),
+                            Username: username,
+                            Email: email,
+                            PasswordHash: password,
+                            CreationDate: Convert.ToDateTime(reader["CreationDate"]),
+                            Status: (User.UserStatus)Convert.ToInt32(reader["Status"])
+                        );
+
+                        Users.Add(user);
+
+                    }
+
+                }
+
+            }
+
+        }
+        catch (SqlException ex)
+        {
+            throw new Exception("Getting users failed.", ex);
+        }
+
+        return Users;
+
     }
 
 }

@@ -51,11 +51,6 @@ public interface IUserRepository
     bool UpdateUser(int userID, User newUser);
 
     /// <summary>
-    /// change user's status
-    /// </summary>
-    bool ChangeUserStatus(int userID, User.UserStatus status);
-
-    /// <summary>
     /// delete user
     /// </summary>
     bool DeleteUser(int userID);

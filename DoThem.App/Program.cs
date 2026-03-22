@@ -111,22 +111,25 @@ namespace DoThem.App
 
         public static void TestUserPart(IUserRepository userRepository)
         {
-
-            /// --------------------------------------------------------------
-            /// Users testing part
-            /// (you must define the data inside the database so the functions don't return null)
+            
+            UserService userService = new UserService(userRepository);
 
             /// TestFindUserFunction(5, userRepository);
             /// TestFindUserFunction("John", "example", userRepository);
-            TestFindUserFunction("Supremekai", "example", userRepository);
-
-            UserService userService = new UserService(userRepository);
+            /// TestFindUserFunction("Supremekai", "example", userRepository);
 
             /// Console.WriteLine(userService.GetUserStatus(6));
             /// Console.WriteLine(userService.GetUserStatus("Cancelo", "example"));
             
-            Console.WriteLine(userService.DoesUserExist(6));
-            Console.WriteLine(userService.DoesUserExist("Cancelo", "example"));
+            /// Console.WriteLine(userService.DoesUserExist(6));
+            /// Console.WriteLine(userService.DoesUserExist("Cancelo", "example"));
+            
+            /// List<User> users = userService.GetUsers();
+
+            /// foreach(User user in users)
+            /// {
+            ///     PrintUserInfo(user);
+            /// }
 
         }
 

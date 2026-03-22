@@ -193,23 +193,42 @@ public class UserService : IUserService
         return DoesUserExist(username, HashPassword(password));
     }
 
-    public bool BanUser(int userID)
+    public bool ChangeUserStatus(int userID, User.UserStatus status)
     {
-        return userRepository.ChangeUserStatus(userID, User.UserStatus.Banned);
+        
+        User? user = FindUser(userID);
+
+        if (user != null)
+        {
+
+            user.Status = status;
+
+            try
+            {
+                if (userRepository.UpdateUser(userID, user))
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while updating user to change status.", ex);
+            }
+
+        }
+
+        return false;
+
     }
 
-    public bool ExpireUser(int userID)
+    public bool ChangeUserPassword(int userID, string newPassword)
     {
-        return userRepository.ChangeUserStatus(userID, User.UserStatus.Expired);
-    }
 
-    public bool ActivateUser(int userID)
-    {
-        return userRepository.ChangeUserStatus(userID, User.UserStatus.Active);
-    }
-
-    public bool ChangePassword(int userID, string newPassword)
-    {
+        // validate password
+        if (string.IsNullOrWhiteSpace(newPassword))
+            throw new ArgumentNullException("Password cannot be empty or null.");
+        if (newPassword.Length > 50)
+            throw new ArgumentException("Password cannot be longer than 50 characters.");
 
         User? user = FindUser(userID);
 

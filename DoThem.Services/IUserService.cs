@@ -68,23 +68,13 @@ public interface IUserService
     bool Login(string username, string password);
 
     /// <summary>
-    /// change the user's status to banned
+    /// change the user's status
     /// </summary>
-    bool BanUser(int userID);
-
-    /// <summary>
-    /// change the user's status to expired
-    /// </summary>
-    bool ExpireUser(int userID);
-
-    /// <summary>
-    /// change the user's status to active
-    /// </summary>
-    bool ActivateUser(int userID);
+    bool ChangeUserStatus(int userID, User.UserStatus status);
 
     /// <summary>
     /// change the user's password
     /// </summary>
-    bool ChangePassword(int userID, string newPassword);
+    bool ChangeUserPassword(int userID, string newPassword);
 
 }
