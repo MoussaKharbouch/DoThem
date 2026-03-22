@@ -62,7 +62,7 @@ public class UserService : IUserService
 
         try
         {
-            return userRepository.FindUser(username, password);
+            return userRepository.FindUser(username, HashPassword(password));
         }
         catch
         {
@@ -73,22 +73,93 @@ public class UserService : IUserService
 
     public User.UserStatus? GetUserStatus(int userID)
     {
-        return userRepository.GetUserStatus(userID);
+
+        // check if user id is negative
+        if (userID < 0)
+            throw new ArgumentOutOfRangeException("user id cannot be negative.");
+
+        try
+        {
+            return userRepository.GetUserStatus(userID);
+        }
+        catch
+        {
+            throw;
+        }
+
     }
 
     public User.UserStatus? GetUserStatus(string username, string password)
     {
-        return userRepository.GetUserStatus(username, HashPassword(password));
+        // validate username
+        if (string.IsNullOrWhiteSpace(username))
+            throw new ArgumentNullException("Username cannot be empty or null.");
+        if (username.Length > 100)
+            throw new ArgumentException("Username cannot be longer than 100 characters.");
+        if (username.Any(char.IsWhiteSpace))
+            throw new ArgumentException("Username cannot have space.");
+
+        // validate password
+        if (string.IsNullOrWhiteSpace(password))
+            throw new ArgumentNullException("Password cannot be empty or null.");
+        if (password.Length > 50)
+            throw new ArgumentException("Password cannot be longer than 50 characters.");
+
+        try
+        {
+            return userRepository.GetUserStatus(username, HashPassword(password));
+        }
+        catch
+        {
+            throw;
+        }
+
     }
 
     public bool DoesUserExist(int userID)
     {
-        return userRepository.DoesUserExist(userID);
+
+        // check if user id is negative
+        if (userID < 0)
+            throw new ArgumentOutOfRangeException("user id cannot be negative.");
+
+        try
+        {
+            return userRepository.DoesUserExist(userID);
+        }
+        catch
+        {
+            throw;
+        }
+
     }
 
     public bool DoesUserExist(string username, string password)
     {
-        return userRepository.DoesUserExist(username, HashPassword(password));
+
+        // validate username
+        if (string.IsNullOrWhiteSpace(username))
+            throw new ArgumentNullException("Username cannot be empty or null.");
+        if (username.Length > 100)
+            throw new ArgumentException("Username cannot be longer than 100 characters.");
+        if (username.Any(char.IsWhiteSpace))
+            throw new ArgumentException("Username cannot have space.");
+
+        // validate password
+        if (string.IsNullOrWhiteSpace(password))
+            throw new ArgumentNullException("Password cannot be empty or null.");
+        if (password.Length > 50)
+            throw new ArgumentException("Password cannot be longer than 50 characters.");
+
+        try
+        {
+            return userRepository.DoesUserExist(username, HashPassword(password));
+        }
+        catch
+        {
+            throw;
+        }
+
     }
 
     public int AddUser(User user)

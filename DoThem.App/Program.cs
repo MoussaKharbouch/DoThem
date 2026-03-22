@@ -102,8 +102,6 @@ namespace DoThem.App
             /// --------------------------------------------------------------
             /// Users testing part
             /// (you must define the data inside the database so the functions don't return null)
-            /// new user repository, we get the connection string from app.config for security
-            /// we have used configuration manager, you have to download some packages
 
             TestFindUserFunction(5, userRepository);
             TestFindUserFunction("John", "example", userRepository);
@@ -119,6 +117,8 @@ namespace DoThem.App
             /// we can use another RDBMS such as: sqllite, postgresql...
             /// and we can use another provider such as: ef core
             
+            /// new user repository, we get the connection string from app.config for security
+            /// we have used configuration manager, you have to download some packages
             IUserRepository userRepository = new UserRepository(ConfigurationManager.ConnectionStrings["DothemDB"].ToString());
             TestUserPart(userRepository);
 

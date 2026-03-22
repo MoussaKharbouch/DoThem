@@ -86,8 +86,7 @@ public class UserRepository : IUserRepository
         }
         catch (SqlException ex)
         {
-            Console.WriteLine(new Exception("finding user failed.", ex));
-            throw new Exception("finding user failed.", ex);
+            throw new Exception("Finding user failed.", ex);
         }
 
         return null;
@@ -158,8 +157,7 @@ public class UserRepository : IUserRepository
         }
         catch (SqlException ex)
         {
-            Console.WriteLine(new Exception("finding user failed.", ex));
-            throw new Exception("finding user failed.", ex);
+            throw new Exception("Finding user failed.", ex);
         }
 
         return null;
@@ -168,7 +166,43 @@ public class UserRepository : IUserRepository
 
     public User.UserStatus? GetUserStatus(int userID)
     {
-        return User.UserStatus.Expired;
+
+        // query to retrieve data using sql statement with user id
+        string query = @"SELECT Status FROM Users
+                        Where UserID = @UserID";
+
+        try
+        {
+
+            /// connect to database
+            /// we have used "using" in every database operation
+            /// for resource management
+            using (SqlConnection connection = new SqlConnection(_ConnectionString))
+            {
+
+                // open the connection to database
+                connection.Open();
+
+                // the command that executes the query using the user id parameter
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                // use scalar to retrieve single value from database
+                object result = command.ExecuteScalar();
+
+                if(result != null)
+                    return (User.UserStatus)result;
+                else
+                    return null;
+
+            }
+
+        }
+        catch (SqlException ex)
+        {
+            throw new Exception("Getting user's status failed.", ex);
+        }
+
     }
 
     public User.UserStatus? GetUserStatus(string username, string password)
