@@ -25,25 +25,7 @@ public class UserService : IUserService
         return Convert.ToBase64String(bytes);
     }
 
-    public User? FindUser(int userID)
-    {
-
-        // check if user id is negative
-        if (userID < 0)
-            throw new ArgumentOutOfRangeException("user id cannot be negative.");
-
-        try
-        {
-            return userRepository.FindUser(userID);
-        }
-        catch
-        {
-            throw;
-        }
-
-    }
-
-    public User? FindUser(string username, string password)
+    private void ValidateCredentials(string username, string password)
     {
 
         // validate username
@@ -60,14 +42,25 @@ public class UserService : IUserService
         if (password.Length > 50)
             throw new ArgumentException("Password cannot be longer than 50 characters.");
 
-        try
-        {
-            return userRepository.FindUser(username, HashPassword(password));
-        }
-        catch
-        {
-            throw;
-        }
+    }
+
+    public User? FindUser(int userID)
+    {
+
+        // check if user id is negative
+        if (userID < 0)
+            throw new ArgumentOutOfRangeException("user id cannot be negative.");
+
+        return userRepository.FindUser(userID);
+
+    }
+
+    public User? FindUser(string username, string password)
+    {
+
+        ValidateCredentials(username, password);
+
+        return userRepository.FindUser(username, HashPassword(password));
 
     }
 
@@ -78,41 +71,16 @@ public class UserService : IUserService
         if (userID < 0)
             throw new ArgumentOutOfRangeException("user id cannot be negative.");
 
-        try
-        {
-            return userRepository.GetUserStatus(userID);
-        }
-        catch
-        {
-            throw;
-        }
+        return userRepository.GetUserStatus(userID);
 
     }
 
     public User.UserStatus? GetUserStatus(string username, string password)
     {
-        // validate username
-        if (string.IsNullOrWhiteSpace(username))
-            throw new ArgumentNullException("Username cannot be empty or null.");
-        if (username.Length > 100)
-            throw new ArgumentException("Username cannot be longer than 100 characters.");
-        if (username.Any(char.IsWhiteSpace))
-            throw new ArgumentException("Username cannot have space.");
 
-        // validate password
-        if (string.IsNullOrWhiteSpace(password))
-            throw new ArgumentNullException("Password cannot be empty or null.");
-        if (password.Length > 50)
-            throw new ArgumentException("Password cannot be longer than 50 characters.");
+        ValidateCredentials(username, password);
 
-        try
-        {
-            return userRepository.GetUserStatus(username, HashPassword(password));
-        }
-        catch
-        {
-            throw;
-        }
+        return userRepository.GetUserStatus(username, HashPassword(password));
 
     }
 
@@ -123,42 +91,16 @@ public class UserService : IUserService
         if (userID < 0)
             throw new ArgumentOutOfRangeException("user id cannot be negative.");
 
-        try
-        {
-            return userRepository.DoesUserExist(userID);
-        }
-        catch
-        {
-            throw;
-        }
+        return userRepository.DoesUserExist(userID);
 
     }
 
     public bool DoesUserExist(string username, string password)
     {
 
-        // validate username
-        if (string.IsNullOrWhiteSpace(username))
-            throw new ArgumentNullException("Username cannot be empty or null.");
-        if (username.Length > 100)
-            throw new ArgumentException("Username cannot be longer than 100 characters.");
-        if (username.Any(char.IsWhiteSpace))
-            throw new ArgumentException("Username cannot have space.");
+        ValidateCredentials(username, password);
 
-        // validate password
-        if (string.IsNullOrWhiteSpace(password))
-            throw new ArgumentNullException("Password cannot be empty or null.");
-        if (password.Length > 50)
-            throw new ArgumentException("Password cannot be longer than 50 characters.");
-
-        try
-        {
-            return userRepository.DoesUserExist(username, HashPassword(password));
-        }
-        catch
-        {
-            throw;
-        }
+        return userRepository.DoesUserExist(username, HashPassword(password));
 
     }
 
@@ -190,12 +132,12 @@ public class UserService : IUserService
 
     public bool Login(string username, string password)
     {
-        return DoesUserExist(username, HashPassword(password));
+        return DoesUserExist(username, password);
     }
 
     public bool ChangeUserStatus(int userID, User.UserStatus status)
     {
-        
+
         User? user = FindUser(userID);
 
         if (user != null)

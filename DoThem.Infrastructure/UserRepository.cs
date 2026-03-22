@@ -75,7 +75,7 @@ public class UserRepository : IUserRepository
                             Email: email,
                             PasswordHash: password,
                             CreationDate: Convert.ToDateTime(reader["CreationDate"]),
-                            Status: (User.UserStatus)Convert.ToInt32(reader["Status"])
+                            Status: status
                         );
 
                     }
@@ -146,7 +146,7 @@ public class UserRepository : IUserRepository
                             Email: email,
                             PasswordHash: reader["Password"].ToString()!,
                             CreationDate: Convert.ToDateTime(reader["CreationDate"]),
-                            Status: (User.UserStatus)Convert.ToInt32(reader["Status"])
+                            Status: status
                         );
 
                     }
@@ -318,7 +318,7 @@ public class UserRepository : IUserRepository
         }
         catch (SqlException ex)
         {
-            throw new Exception("Getting user's status failed.", ex);
+            throw new Exception("Checking if user exists failed failed.", ex);
         }
 
     }
