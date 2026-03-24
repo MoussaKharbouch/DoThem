@@ -104,7 +104,7 @@ public class UserService : IUserService
 
     }
 
-    public int AddUser(User user)
+    public int? AddUser(User user)
     {
         return userRepository.AddUser(user);
     }

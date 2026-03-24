@@ -43,7 +43,7 @@ public interface IUserRepository
     /// <returns>
     /// the id of the new user
     /// </returns>
-    int AddUser(User user);
+    int? AddUser(User user);
 
     /// <summary>
     /// update user

@@ -191,7 +191,7 @@ public class UserRepository : IUserRepository
                 // use scalar to retrieve single value from database
                 object result = command.ExecuteScalar();
 
-                if(result != null && result != DBNull.Value)
+                if (result != null && result != DBNull.Value)
                     return (User.UserStatus)Convert.ToInt32(result);
                 else
                     return null;
@@ -233,7 +233,7 @@ public class UserRepository : IUserRepository
                 // use scalar to retrieve single value from database
                 object result = command.ExecuteScalar();
 
-                if(result != null && result != DBNull.Value)
+                if (result != null && result != DBNull.Value)
                     return (User.UserStatus)Convert.ToInt32(result);
                 else
                     return null;
@@ -250,7 +250,7 @@ public class UserRepository : IUserRepository
 
     public bool DoesUserExist(int userID)
     {
-        
+
         // query to retrieve data using sql statement with user id
         string query = @"SELECT 1 FROM Users
                         Where UserID = @UserID";
@@ -323,9 +323,59 @@ public class UserRepository : IUserRepository
 
     }
 
-    public int AddUser(User user)
+    public int? AddUser(User user)
     {
-        return int.MinValue;
+
+        // the query that add a new user to database (at the end, we get the id of the new user)
+        string query = @"INSERT INTO [dbo].[Users]
+                                ([Username]
+                                ,[Email]
+                                ,[Password]
+                                ,[CreationDate]
+                                ,[Status])
+                            VALUES
+                                (@Username
+                                @Email
+                                @Password
+                                @CreationDate
+                                @Status)";
+
+        try
+        {
+
+            /// connecting to string using SqlConnection with the connection string
+            /// we add using for resource management
+            using (SqlConnection connection = new SqlConnection(_ConnectionString))
+            {
+
+                // command to add new user (we add all parameters from the object)
+                SqlCommand command = new SqlCommand(query, connection);
+
+                // add the parameters
+                command.Parameters.AddWithValue("", user.Username);
+                command.Parameters.AddWithValue("", user.Email);
+                command.Parameters.AddWithValue("", user.PasswordHash);
+                command.Parameters.AddWithValue("", user.CreationDate);
+                command.Parameters.AddWithValue("", user.Status);
+
+                // we retrieve the id of the added user
+                object result = command.ExecuteScalar();
+                int newUserID;
+
+                // checking if the value is valide (it can return nothing)
+                if (result != null && int.TryParse(result.ToString(), out newUserID))
+                    return newUserID;
+                else
+                    return null;
+
+            }
+
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Adding new user failed", ex);
+        }
+
     }
 
     public bool UpdateUser(int userID, User newUser)

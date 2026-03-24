@@ -39,7 +39,7 @@ public interface IUserService
     /// <summary>
     /// add new user
     /// </summary>
-    int AddUser(User user);
+    int? AddUser(User user);
 
     /// <summary>
     /// update user
