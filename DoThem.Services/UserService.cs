@@ -5,6 +5,7 @@ using System.Text;
 using System.Linq;
 using DoThem.Infrastructure;
 using DoThem.Domain;
+using System.Data;
 
 namespace DoThem.Services;
 
@@ -44,68 +45,68 @@ public class UserService : IUserService
 
     }
 
-    public User? FindUser(int userID)
+    private void ValidateUserFields(User user)
     {
 
+        ValidateCredentials(user.Username, user.Password);
+
+        if (string.IsNullOrWhiteSpace(user.Email))
+            throw new ArgumentNullException("Email cannot be empty or null.");
+        if (!user.Email.EndsWith("@gmail.com"))
+            throw new ArgumentException(nameof(user.Email), "Invalid email format.");
+        if (user.Email.Length > 100)
+            throw new ArgumentException("Email cannot be longer than 100 characters.");
+        if (user.Email.Any(char.IsWhiteSpace))
+            throw new ArgumentException("Email cannot have space.");
+
+    }
+
+    public User? FindUser(int userID)
+    {
         // check if user id is negative
         if (userID < 0)
             throw new ArgumentOutOfRangeException("user id cannot be negative.");
-
         return userRepository.FindUser(userID);
-
     }
 
     public User? FindUser(string username, string password)
     {
-
         ValidateCredentials(username, password);
-
         return userRepository.FindUser(username, HashPassword(password));
-
     }
 
     public User.UserStatus? GetUserStatus(int userID)
     {
-
         // check if user id is negative
         if (userID < 0)
             throw new ArgumentOutOfRangeException("user id cannot be negative.");
-
         return userRepository.GetUserStatus(userID);
-
     }
 
     public User.UserStatus? GetUserStatus(string username, string password)
     {
-
         ValidateCredentials(username, password);
-
         return userRepository.GetUserStatus(username, HashPassword(password));
-
     }
 
     public bool DoesUserExist(int userID)
     {
-
         // check if user id is negative
         if (userID < 0)
             throw new ArgumentOutOfRangeException("user id cannot be negative.");
-
         return userRepository.DoesUserExist(userID);
-
     }
 
     public bool DoesUserExist(string username, string password)
     {
-
         ValidateCredentials(username, password);
-
         return userRepository.DoesUserExist(username, HashPassword(password));
-
     }
 
     public int? AddUser(User user)
     {
+        ValidateUserFields(user);
+        user.Password = HashPassword(user.Password);
         return userRepository.AddUser(user);
     }
 
@@ -126,7 +127,7 @@ public class UserService : IUserService
 
     public bool RegisterUser(User user)
     {
-        user.PasswordHash = HashPassword(user.PasswordHash);
+        user.Password = HashPassword(user.Password);
         return userRepository.AddUser(user) != int.MinValue;
     }
 
@@ -177,7 +178,7 @@ public class UserService : IUserService
         if (user != null)
         {
 
-            user.PasswordHash = HashPassword(newPassword);
+            user.Password = HashPassword(newPassword);
 
             try
             {

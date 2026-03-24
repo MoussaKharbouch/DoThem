@@ -55,7 +55,7 @@ public class User
             if (value.Length > 100)
                 throw new ArgumentException("Email cannot be longer than 100 characters.");
             if (value.Any(char.IsWhiteSpace))
-                throw new ArgumentException("Username cannot have space.");
+                throw new ArgumentException("Email cannot have space.");
 
             _Email = value;
 
@@ -64,13 +64,13 @@ public class User
     }
 
     //Password must be encrypted so no one can see it
-    private string _PasswordHash = string.Empty;
-    public string PasswordHash
+    private string _Password = string.Empty;
+    public string Password
     {
 
         get
         {
-            return _PasswordHash;
+            return _Password;
         }
 
         set
@@ -82,13 +82,35 @@ public class User
             if (value.Length > 50)
                 throw new ArgumentException("Password cannot be longer than 50 characters.");
 
-            _PasswordHash = value;
+            _Password = value;
 
         }
 
     }
 
-    public DateTime CreationDate { get; private set; }
+    private DateTime _CreationDate;
+    private static readonly DateTime MinCreationDate = new DateTime(2000, 1, 1);
+
+    public DateTime CreationDate {
+
+        get
+        {
+            return _CreationDate;
+        }
+
+        private set
+        {
+
+            if(value > DateTime.UtcNow)
+                throw new ArgumentException("Creation date cannot be in the future.");
+            if(value < MinCreationDate)
+                throw new ArgumentException("Creation date cannot be older than the year of 2000.");
+
+            _CreationDate = value;
+
+        }
+
+    }
 
     public enum UserStatus { Active = 1, Expired = 2, Banned = 3 }
     public UserStatus Status { get; set; }
@@ -98,7 +120,7 @@ public class User
         this.UserID = UserID;
         this.Username = Username;
         this.Email = Email;
-        this.PasswordHash = PasswordHash;
+        this.Password = PasswordHash;
         this.CreationDate = CreationDate;
         this.Status = Status;
     }

@@ -57,7 +57,7 @@ namespace DoThem.App
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("PasswordHash: ");
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(user.PasswordHash);
+            Console.WriteLine(user.Password);
 
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("CreationDate: ");
@@ -111,7 +111,7 @@ namespace DoThem.App
 
         public static void TestUserPart(IUserRepository userRepository)
         {
-            
+
             UserService userService = new UserService(userRepository);
 
             /// TestFindUserFunction(5, userRepository);
@@ -120,16 +120,24 @@ namespace DoThem.App
 
             /// Console.WriteLine(userService.GetUserStatus(6));
             /// Console.WriteLine(userService.GetUserStatus("Cancelo", "example"));
-            
+
             /// Console.WriteLine(userService.DoesUserExist(6));
             /// Console.WriteLine(userService.DoesUserExist("Cancelo", "example"));
-            
+
             /// List<User> users = userService.GetUsers();
 
             /// foreach(User user in users)
             /// {
             ///     PrintUserInfo(user);
             /// }
+
+            User newUser = new User(1, "MoussaDev", "moussa5arbouche@gmail.com", "password_123", 
+                                    new DateTime(2023, 5, 10),
+                                    User.UserStatus.Active
+                                   );
+            
+            int? newUserID = userService.AddUser(newUser);
+            PrintUserInfo(userService.FindUser((int)newUserID!));
 
         }
 

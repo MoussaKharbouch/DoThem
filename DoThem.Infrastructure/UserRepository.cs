@@ -44,39 +44,43 @@ public class UserRepository : IUserRepository
                 connection.Open();
 
                 // the command that executes the query using the user id parameter
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@UserID", userID);
-
-                // use reader to get data from database
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
 
-                    /// if reader doesn't have any rows,
-                    /// we return null
-                    if (!reader.HasRows)
-                        return null;
+                    command.Parameters.AddWithValue("@UserID", userID);
 
-                    if (reader.Read())
+                    // use reader to get data from database
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
 
-                        /// make sure that the values are not null,
-                        /// and if they are we return an exception, 
-                        /// using null-coalescing
-                        string username = reader["Username"]?.ToString() ?? throw new Exception("Username null");
-                        string email = reader["Email"]?.ToString() ?? throw new Exception("Email null");
-                        string password = reader["Password"]?.ToString() ?? throw new Exception("Password null");
+                        /// if reader doesn't have any rows,
+                        /// we return null
+                        if (!reader.HasRows)
+                            return null;
 
-                        // make sure that the user status is in the right range
-                        User.UserStatus status = Enum.IsDefined(typeof(User.UserStatus), Convert.ToInt32(reader["Status"])) ? (User.UserStatus)Convert.ToInt32(reader["Status"]) : User.UserStatus.Expired;
+                        if (reader.Read())
+                        {
 
-                        return new User(
-                            UserID: Convert.ToInt32(reader["UserID"]),
-                            Username: username,
-                            Email: email,
-                            PasswordHash: password,
-                            CreationDate: Convert.ToDateTime(reader["CreationDate"]),
-                            Status: status
-                        );
+                            /// make sure that the values are not null,
+                            /// and if they are we return an exception, 
+                            /// using null-coalescing
+                            string username = reader["Username"]?.ToString() ?? throw new Exception("Username null");
+                            string email = reader["Email"]?.ToString() ?? throw new Exception("Email null");
+                            string password = reader["Password"]?.ToString() ?? throw new Exception("Password null");
+
+                            // make sure that the user status is in the right range
+                            User.UserStatus status = Enum.IsDefined(typeof(User.UserStatus), Convert.ToInt32(reader["Status"])) ? (User.UserStatus)Convert.ToInt32(reader["Status"]) : User.UserStatus.Expired;
+
+                            return new User(
+                                UserID: Convert.ToInt32(reader["UserID"]),
+                                Username: username,
+                                Email: email,
+                                PasswordHash: password,
+                                CreationDate: Convert.ToDateTime(reader["CreationDate"]),
+                                Status: status
+                            );
+
+                        }
 
                     }
 
@@ -114,40 +118,44 @@ public class UserRepository : IUserRepository
                 connection.Open();
 
                 // the command that executes the query using the user id parameter
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Username", username);
-                command.Parameters.AddWithValue("@Password", password);
-
-                // use reader to get data from database
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (SqlCommand command = new SqlCommand(query, connection))
                 {
 
-                    /// if reader doesn't have any rows,
-                    /// we return null
-                    if (!reader.HasRows)
-                        return null;
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Password", password);
 
-                    if (reader.Read())
+                    // use reader to get data from database
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
 
-                        /// make sure that the values are not null,
-                        /// and if they are we return an exception, 
-                        /// using null-coalescing
-                        /// we don't check username and password because they are alreade the paameters,
-                        /// so they cannot be null in database
-                        string email = reader["Email"]?.ToString() ?? throw new Exception("Email null");
+                        /// if reader doesn't have any rows,
+                        /// we return null
+                        if (!reader.HasRows)
+                            return null;
 
-                        // make sure that the user status is in the right range
-                        User.UserStatus status = Enum.IsDefined(typeof(User.UserStatus), Convert.ToInt32(reader["Status"])) ? (User.UserStatus)Convert.ToInt32(reader["Status"]) : User.UserStatus.Expired;
+                        if (reader.Read())
+                        {
 
-                        return new User(
-                            UserID: Convert.ToInt32(reader["UserID"]),
-                            Username: reader["Username"].ToString()!,
-                            Email: email,
-                            PasswordHash: reader["Password"].ToString()!,
-                            CreationDate: Convert.ToDateTime(reader["CreationDate"]),
-                            Status: status
-                        );
+                            /// make sure that the values are not null,
+                            /// and if they are we return an exception, 
+                            /// using null-coalescing
+                            /// we don't check username and password because they are alreade the paameters,
+                            /// so they cannot be null in database
+                            string email = reader["Email"]?.ToString() ?? throw new Exception("Email null");
+
+                            // make sure that the user status is in the right range
+                            User.UserStatus status = Enum.IsDefined(typeof(User.UserStatus), Convert.ToInt32(reader["Status"])) ? (User.UserStatus)Convert.ToInt32(reader["Status"]) : User.UserStatus.Expired;
+
+                            return new User(
+                                UserID: Convert.ToInt32(reader["UserID"]),
+                                Username: reader["Username"].ToString()!,
+                                Email: email,
+                                PasswordHash: reader["Password"].ToString()!,
+                                CreationDate: Convert.ToDateTime(reader["CreationDate"]),
+                                Status: status
+                            );
+
+                        }
 
                     }
 
@@ -185,16 +193,20 @@ public class UserRepository : IUserRepository
                 connection.Open();
 
                 // the command that executes the query using the user id parameter
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@UserID", userID);
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
 
-                // use scalar to retrieve single value from database
-                object result = command.ExecuteScalar();
+                    command.Parameters.AddWithValue("@UserID", userID);
 
-                if (result != null && result != DBNull.Value)
-                    return (User.UserStatus)Convert.ToInt32(result);
-                else
-                    return null;
+                    // use scalar to retrieve single value from database
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                        return (User.UserStatus)Convert.ToInt32(result);
+                    else
+                        return null;
+
+                }
 
             }
 
@@ -226,17 +238,21 @@ public class UserRepository : IUserRepository
                 connection.Open();
 
                 // the command that executes the query using the user id parameter
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Username", username);
-                command.Parameters.AddWithValue("@Password", password);
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
 
-                // use scalar to retrieve single value from database
-                object result = command.ExecuteScalar();
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Password", password);
 
-                if (result != null && result != DBNull.Value)
-                    return (User.UserStatus)Convert.ToInt32(result);
-                else
-                    return null;
+                    // use scalar to retrieve single value from database
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                        return (User.UserStatus)Convert.ToInt32(result);
+                    else
+                        return null;
+
+                }
 
             }
 
@@ -268,12 +284,16 @@ public class UserRepository : IUserRepository
                 connection.Open();
 
                 // the command that executes the query using the user id parameter
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@UserID", userID);
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
 
-                // use scalar to retrieve single value from database
-                object result = command.ExecuteScalar();
-                return (result != null && result != DBNull.Value);
+                    command.Parameters.AddWithValue("@UserID", userID);
+
+                    // use scalar to retrieve single value from database
+                    object result = command.ExecuteScalar();
+                    return (result != null && result != DBNull.Value);
+
+                }
 
             }
 
@@ -305,13 +325,17 @@ public class UserRepository : IUserRepository
                 connection.Open();
 
                 // the command that executes the query using the user id parameter
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@Username", username);
-                command.Parameters.AddWithValue("@Password", password);
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
 
-                // use scalar to retrieve single value from database
-                object result = command.ExecuteScalar();
-                return (result != null && result != DBNull.Value);
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Password", password);
+
+                    // use scalar to retrieve single value from database
+                    object result = command.ExecuteScalar();
+                    return (result != null && result != DBNull.Value);
+
+                }
 
             }
 
@@ -335,10 +359,11 @@ public class UserRepository : IUserRepository
                                 ,[Status])
                             VALUES
                                 (@Username
-                                @Email
-                                @Password
-                                @CreationDate
-                                @Status)";
+                                ,@Email
+                                ,@Password
+                                ,@CreationDate
+                                ,@Status);
+                        SELECT SCOPE_IDENTITY();";
 
         try
         {
@@ -348,25 +373,30 @@ public class UserRepository : IUserRepository
             using (SqlConnection connection = new SqlConnection(_ConnectionString))
             {
 
+                connection.Open();
+
                 // command to add new user (we add all parameters from the object)
-                SqlCommand command = new SqlCommand(query, connection);
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
 
-                // add the parameters
-                command.Parameters.AddWithValue("", user.Username);
-                command.Parameters.AddWithValue("", user.Email);
-                command.Parameters.AddWithValue("", user.PasswordHash);
-                command.Parameters.AddWithValue("", user.CreationDate);
-                command.Parameters.AddWithValue("", user.Status);
+                    // add the parameters
+                    command.Parameters.AddWithValue("@Username", user.Username);
+                    command.Parameters.AddWithValue("@Email", user.Email);
+                    command.Parameters.AddWithValue("@Password", user.Password);
+                    command.Parameters.AddWithValue("@CreationDate", user.CreationDate);
+                    command.Parameters.AddWithValue("@Status", user.Status);
 
-                // we retrieve the id of the added user
-                object result = command.ExecuteScalar();
-                int newUserID;
+                    // we retrieve the id of the added user
+                    object result = command.ExecuteScalar();
+                    int newUserID;
 
-                // checking if the value is valide (it can return nothing)
-                if (result != null && int.TryParse(result.ToString(), out newUserID))
-                    return newUserID;
-                else
-                    return null;
+                    // checking if the value is valide (it can return nothing)
+                    if (result != null && int.TryParse(result.ToString(), out newUserID))
+                        return newUserID;
+                    else
+                        return null;
+
+                }
 
             }
 
