@@ -1382,6 +1382,7 @@
   "projectFileDependencyGroups": {
     "net10.0": [
       "DoThem.Domain >= 1.0.0",
+      "DoThem.Infrastructure >= 1.0.0",
       "DoThem.Services >= 1.0.0",
       "System.Configuration.ConfigurationManager >= 10.0.5"
     ]
@@ -1415,6 +1416,9 @@
           "projectReferences": {
             "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Domain\\DoThem.Domain.csproj": {
               "projectPath": "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Domain\\DoThem.Domain.csproj"
+            },
+            "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Infrastructure\\DoThem.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Infrastructure\\DoThem.Infrastructure.csproj"
             },
             "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Services\\DoThem.Services.csproj": {
               "projectPath": "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Services\\DoThem.Services.csproj"

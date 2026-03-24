@@ -9,6 +9,7 @@
       "DoThem.App/1.0.0": {
         "dependencies": {
           "DoThem.Domain": "1.0.0",
+          "DoThem.Infrastructure": "1.0.0",
           "DoThem.Services": "1.0.0",
           "System.Configuration.ConfigurationManager": "10.0.5"
         },

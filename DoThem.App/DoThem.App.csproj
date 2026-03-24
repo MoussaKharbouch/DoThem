@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DoThem.Services\DoThem.Services.csproj" />
     <ProjectReference Include="..\DoThem.Domain\DoThem.Domain.csproj" />
+    <ProjectReference Include="..\DoThem.Infrastructure\DoThem.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
