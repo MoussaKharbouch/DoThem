@@ -32,11 +32,6 @@ public interface IUserService
     bool DoesUserExist(int userID);
 
     /// <summary>
-    /// check if user exists by username and password
-    /// </summary>
-    bool DoesUserExist(string username, string password);
-
-    /// <summary>
     /// add new user
     /// </summary>
     int? AddUser(User user);

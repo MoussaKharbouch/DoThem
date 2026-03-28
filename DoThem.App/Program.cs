@@ -112,16 +112,21 @@ namespace DoThem.App
         public static void TestUserPart(IUserRepository userRepository)
         {
 
+            // we create the service here because we need it for all the tests, and we don't want to create it in each test function
             UserService userService = new UserService(userRepository);
 
+            // we will test all the functions of the user service, and we will print the results with colors for better visualization
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("\n======================================");
             Console.WriteLine("         USER MODULE TEST");
             Console.WriteLine("======================================\n");
             Console.ResetColor();
 
+            int? newUserID = int.MinValue; // we will use this variable to store the new user id, and we will use it in the next tests
+
             try
             {
+
                 /// 1. Add User
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine(">> [1] Adding New User...");
@@ -136,7 +141,7 @@ namespace DoThem.App
                     User.UserStatus.Active
                 );
 
-                int? newUserID = userService.AddUser(newUser);
+                newUserID = userService.AddUser(newUser);
 
                 if (newUserID == null)
                 {
@@ -168,7 +173,6 @@ namespace DoThem.App
                 var userByCredentials = userService.FindUser("MoussaDev", "password_123");
                 PrintUserInfo(userByCredentials);
 
-
                 // 4. Check if user exists
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\n>> [4] Checking if user exists...");
@@ -176,10 +180,6 @@ namespace DoThem.App
 
                 bool exists = userService.DoesUserExist((int)newUserID);
                 Console.WriteLine($"User Exists (by ID): {exists}");
-
-                exists = userService.DoesUserExist("MoussaDev", "password_123");
-                Console.WriteLine($"User Exists (by credentials): {exists}");
-
 
                 // 5. Get User Status
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -192,8 +192,30 @@ namespace DoThem.App
                 status = userService.GetUserStatus("MoussaDev", "password_123");
                 Console.WriteLine($"User Status (by credentials): {status}");
 
+                // 6. Update User
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\n>> [6] Updating user information...");
+                Console.ResetColor();
+                User updatedUser = new User(
+                    (int)newUserID,
+                    "MoussaDevUpdated",
+                    "moussa5arbouche@gmail.com",
+                    "updated_password_123",
+                    new DateTime(2023, 5, 10),
+                    User.UserStatus.Active
+                );
 
-                // 6. Get All Users
+                bool updated = userService.UpdateUser((int)newUserID, updatedUser);
+                Console.WriteLine($"User Updated: {updated}");
+
+                // 7. Change User Status
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\n>> [7] Changing user status...");
+                Console.ResetColor();
+                bool statusChanged = userService.ChangeUserStatus((int)newUserID, User.UserStatus.Banned);
+                Console.WriteLine($"User Status Changed: {statusChanged}");
+
+                // 8. Get All Users
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("\n>> [6] Retrieving all users...");
                 Console.ResetColor();
@@ -229,6 +251,35 @@ namespace DoThem.App
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("\n======================================\n");
             Console.ResetColor();
+
+            /// 9. Delete User - we will delete the user we just created, and then we will show user list to show that the user is deleted
+            /// we delete user because username is unique, so if we run the program again it will throw an exception,
+            /// because we will try to add a user with the same username,
+            /// so we delete the user to avoid this problem, and also to test the delete function
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(">> [8] Deleting user...");
+            Console.ResetColor();
+            bool deleted = userService.DeleteUser((int)newUserID!); // we are sure that newUserID is not null because if it was null we would have returned from the function in the catch block, so we can safely cast it to int
+            Console.WriteLine($"User Deleted: {deleted}");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\n>> [9] Retrieving all users after deletion...");
+            Console.ResetColor();
+            List<User> usersAfterDeletion = userService.GetUsers();
+            if (usersAfterDeletion.Count == 0)
+            {
+                Console.WriteLine("⚠ No users found.");
+            }
+            else
+            {
+                Console.WriteLine($"✔ Total Users: {usersAfterDeletion.Count}\n");
+
+                foreach (var user in usersAfterDeletion)
+                {
+                    PrintUserInfo(user);
+                }
+
+            }
 
         }
 

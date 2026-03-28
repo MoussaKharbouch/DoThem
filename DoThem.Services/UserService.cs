@@ -72,7 +72,14 @@ public class UserService : IUserService
     public User? FindUser(string username, string password)
     {
         ValidateCredentials(username, password);
-        return userRepository.FindUser(username, HashPassword(password));
+        /// repository doesn't search with password,
+        /// it searches with username only,
+        /// so we will search with username and then check the password in the service layer,
+        /// if the password is correct we will return the user, otherwise we will return null
+        User? user = userRepository.FindUser(username);
+        if (user != null && user.Password == HashPassword(password))
+            return user;
+        return null;
     }
 
     public User.UserStatus? GetUserStatus(int userID)
@@ -86,7 +93,14 @@ public class UserService : IUserService
     public User.UserStatus? GetUserStatus(string username, string password)
     {
         ValidateCredentials(username, password);
-        return userRepository.GetUserStatus(username, HashPassword(password));
+        /// repository doesn't search with password,
+        /// it searches with username only,
+        /// so we will search with username and then check the password in the service layer,
+        /// if the password is correct we will return the user status, otherwise we will return null
+        User? user = userRepository.FindUser(username);
+        if (user != null && user.Password == HashPassword(password))
+            return user.Status;
+        return null;
     }
 
     public bool DoesUserExist(int userID)
@@ -95,12 +109,6 @@ public class UserService : IUserService
         if (userID < 0)
             throw new ArgumentOutOfRangeException("user id cannot be negative.");
         return userRepository.DoesUserExist(userID);
-    }
-
-    public bool DoesUserExist(string username, string password)
-    {
-        ValidateCredentials(username, password);
-        return userRepository.DoesUserExist(username, HashPassword(password));
     }
 
     public int? AddUser(User user)
@@ -146,12 +154,23 @@ public class UserService : IUserService
     public bool RegisterUser(User user)
     {
         user.Password = HashPassword(user.Password);
-        return userRepository.AddUser(user) != int.MinValue;
+        return userRepository.AddUser(user) != null;
     }
 
     public bool Login(string username, string password)
     {
-        return DoesUserExist(username, password);
+
+        ValidateCredentials(username, password);
+
+        // check if user is active, if it is not active we will return false, if it is active we will check the credentials and return true if they are correct, otherwise we will return false
+        User? user = FindUser(username, password);
+        if (user == null)
+            return false;
+        if (user.Status != User.UserStatus.Active)
+            return false;
+
+        return true;
+
     }
 
     public bool ChangeUserStatus(int userID, User.UserStatus status)

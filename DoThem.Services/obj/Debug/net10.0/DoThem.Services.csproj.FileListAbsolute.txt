@@ -16,3 +16,21 @@ C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Services\obj\Debug\net10.0\DoThem
 C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Services\obj\Debug\net10.0\refint\DoThem.Services.dll
 C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Services\obj\Debug\net10.0\DoThem.Services.pdb
 C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Services\obj\Debug\net10.0\ref\DoThem.Services.dll
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\bin\Debug\net10.0\DoThem.Services.deps.json
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\bin\Debug\net10.0\DoThem.Services.dll
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\bin\Debug\net10.0\DoThem.Services.pdb
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\bin\Debug\net10.0\DoThem.Domain.dll
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\bin\Debug\net10.0\DoThem.Infrastructure.dll
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\bin\Debug\net10.0\DoThem.Infrastructure.pdb
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\bin\Debug\net10.0\DoThem.Domain.pdb
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\obj\Debug\net10.0\DoThem.Services.csproj.AssemblyReference.cache
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\obj\Debug\net10.0\DoThem.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\obj\Debug\net10.0\DoThem.Services.AssemblyInfoInputs.cache
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\obj\Debug\net10.0\DoThem.Services.AssemblyInfo.cs
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\obj\Debug\net10.0\DoThem.Services.csproj.CoreCompileInputs.cache
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\obj\Debug\net10.0\DoThem.Services.sourcelink.json
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\obj\Debug\net10.0\DoThem.S.C4612491.Up2Date
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\obj\Debug\net10.0\DoThem.Services.dll
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\obj\Debug\net10.0\refint\DoThem.Services.dll
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\obj\Debug\net10.0\DoThem.Services.pdb
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Services\obj\Debug\net10.0\ref\DoThem.Services.dll

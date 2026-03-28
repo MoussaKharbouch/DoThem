@@ -98,12 +98,12 @@ public class UserRepository : IUserRepository
 
     }
 
-    public User? FindUser(string username, string password)
+    public User? FindUser(string username)
     {
 
         // query to retrieve data using sql statement with user id
         string query = @"SELECT * FROM Users
-                        Where Username = @Username and Password = @Password";
+                        Where Username = @Username";
 
         try
         {
@@ -122,7 +122,6 @@ public class UserRepository : IUserRepository
                 {
 
                     command.Parameters.AddWithValue("@Username", username);
-                    command.Parameters.AddWithValue("@Password", password);
 
                     // use reader to get data from database
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -218,12 +217,12 @@ public class UserRepository : IUserRepository
 
     }
 
-    public User.UserStatus? GetUserStatus(string username, string password)
+    public User.UserStatus? GetUserStatus(string username)
     {
 
         // query to retrieve data using sql statement with user id
         string query = @"SELECT Status FROM Users
-                        Where Username = @Username and Password = @Password";
+                        Where Username = @Username";
 
         try
         {
@@ -242,7 +241,6 @@ public class UserRepository : IUserRepository
                 {
 
                     command.Parameters.AddWithValue("@Username", username);
-                    command.Parameters.AddWithValue("@Password", password);
 
                     // use scalar to retrieve single value from database
                     object result = command.ExecuteScalar();
@@ -301,48 +299,6 @@ public class UserRepository : IUserRepository
         catch (SqlException ex)
         {
             throw new Exception("Checking if user exists failed.", ex);
-        }
-
-    }
-
-    public bool DoesUserExist(string username, string password)
-    {
-
-        // query to retrieve data using sql statement with user id
-        string query = @"SELECT 1 FROM Users
-                        Where Username = @Username and Password = @Password";
-
-        try
-        {
-
-            /// connect to database
-            /// we have used "using" in every database operation
-            /// for resource management
-            using (SqlConnection connection = new SqlConnection(_ConnectionString))
-            {
-
-                // open the connection to database
-                connection.Open();
-
-                // the command that executes the query using the user id parameter
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-
-                    command.Parameters.AddWithValue("@Username", username);
-                    command.Parameters.AddWithValue("@Password", password);
-
-                    // use scalar to retrieve single value from database
-                    object result = command.ExecuteScalar();
-                    return (result != null && result != DBNull.Value);
-
-                }
-
-            }
-
-        }
-        catch (SqlException ex)
-        {
-            throw new Exception("Checking if user exists failed failed.", ex);
         }
 
     }
@@ -440,6 +396,7 @@ public class UserRepository : IUserRepository
                     command.Parameters.AddWithValue("@Password", newUser.Password);
                     command.Parameters.AddWithValue("@CreationDate", newUser.CreationDate);
                     command.Parameters.AddWithValue("@Status", newUser.Status);
+                    command.Parameters.AddWithValue("@UserID", userID);
 
                     // checking if the update was successful (it can return nothing)
                     if (command.ExecuteNonQuery() > 0)
@@ -500,7 +457,7 @@ public class UserRepository : IUserRepository
         {
             throw new Exception("Changing user's status failed", ex);
         }
-        
+
     }
 
     public bool DeleteUser(int userID)

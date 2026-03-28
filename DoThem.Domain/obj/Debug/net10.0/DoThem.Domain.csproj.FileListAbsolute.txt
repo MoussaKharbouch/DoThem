@@ -10,3 +10,15 @@ C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Domain\obj\Debug\net10.0\DoThem.D
 C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Domain\obj\Debug\net10.0\refint\DoThem.Domain.dll
 C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Domain\obj\Debug\net10.0\DoThem.Domain.pdb
 C:\Users\Moussa\Documents\GitHub\DoThem\DoThem.Domain\obj\Debug\net10.0\ref\DoThem.Domain.dll
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Domain\bin\Debug\net10.0\DoThem.Domain.deps.json
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Domain\bin\Debug\net10.0\DoThem.Domain.dll
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Domain\bin\Debug\net10.0\DoThem.Domain.pdb
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Domain\obj\Debug\net10.0\DoThem.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Domain\obj\Debug\net10.0\DoThem.Domain.AssemblyInfoInputs.cache
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Domain\obj\Debug\net10.0\DoThem.Domain.AssemblyInfo.cs
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Domain\obj\Debug\net10.0\DoThem.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Domain\obj\Debug\net10.0\DoThem.Domain.sourcelink.json
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Domain\obj\Debug\net10.0\DoThem.Domain.dll
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Domain\obj\Debug\net10.0\refint\DoThem.Domain.dll
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Domain\obj\Debug\net10.0\DoThem.Domain.pdb
+C:\Users\Moussa\Desktop\Software Developement\Projects\DoThem\DoThem.Domain\obj\Debug\net10.0\ref\DoThem.Domain.dll

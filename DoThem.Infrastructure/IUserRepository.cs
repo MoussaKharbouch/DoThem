@@ -15,7 +15,7 @@ public interface IUserRepository
     /// <summary>
     /// find user by username and password
     /// </summary>
-    User? FindUser(string username, string password);
+    User? FindUser(string username);
 
     /// <summary>
     /// get the user's status by user's id
@@ -23,19 +23,9 @@ public interface IUserRepository
     User.UserStatus? GetUserStatus(int userID);
 
     /// <summary>
-    /// get the user's status by username and password
-    /// </summary>
-    User.UserStatus? GetUserStatus(string username, string password);
-
-    /// <summary>
     /// check if user exists by user's id
     /// </summary>
     bool DoesUserExist(int userID);
-
-    /// <summary>
-    /// check if user exists by username and password
-    /// </summary>
-    bool DoesUserExist(string username, string password);
 
     /// <summary>
     /// add new user
