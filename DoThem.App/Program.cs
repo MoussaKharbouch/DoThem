@@ -16,7 +16,14 @@ namespace DoThem.App
 
         // not all methods have testing functions, just the big ones or the ones that have big logic
 
-        // in case you don't know a password in hash :)
+        /// <summary>
+        /// in case you don't know a password in hash :)
+        /// you can use this function to hash a password and then use the hash in the database,
+        /// and then you can use the same password to login,
+        /// because the service will hash it and compare it with the hash in the database
+        /// </summary>
+        /// <param name="password"></param>
+        /// <returns></returns>
         static public string HashPassword(string password)
         {
             using SHA256 sha = SHA256.Create();
