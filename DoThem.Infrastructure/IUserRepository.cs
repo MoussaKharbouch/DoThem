@@ -56,6 +56,11 @@ public interface IUserRepository
     bool DeleteUser(int userID);
 
     /// <summary>
+    /// change user status
+    /// </summary>
+    bool ChangeUserStatus(int userID, User.UserStatus status);
+
+    /// <summary>
     /// get users with all fields
     /// </summary>
     List<User> GetUsers();

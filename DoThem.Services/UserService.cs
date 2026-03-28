@@ -112,11 +112,29 @@ public class UserService : IUserService
 
     public bool UpdateUser(int userID, User newUser)
     {
+
+        // check if user id is negative
+        if (userID < 0)
+            throw new ArgumentOutOfRangeException("user id cannot be negative.");
+
+        ValidateUserFields(newUser);
+
+        // we can't hash the password, maybe the user doesn't want to change it, so we will check if the password is the same as the old one, if it is, we will keep it, otherwise we will hash it
+        User? oldUser = FindUser(userID);
+        if (oldUser == null)
+            throw new ArgumentException("User with the given ID does not exist.");
+        if (oldUser.Password != newUser.Password)
+            newUser.Password = HashPassword(newUser.Password);
+
         return userRepository.UpdateUser(userID, newUser);
+
     }
 
     public bool DeleteUser(int userID)
     {
+        // check if user id is negative
+        if (userID < 0)
+            throw new ArgumentOutOfRangeException("user id cannot be negative.");
         return userRepository.DeleteUser(userID);
     }
 
@@ -139,6 +157,15 @@ public class UserService : IUserService
     public bool ChangeUserStatus(int userID, User.UserStatus status)
     {
 
+        // check if user id is negative
+        if (userID < 0)
+            throw new ArgumentOutOfRangeException("user id cannot be negative.");
+
+        // we change status not with update user, we change it with changeuserstatus method in repository, but we will check if the user exists first, if it doesn't exist we will return false, if it exists we will change the status and then update the user
+        // check if user id is negative
+        if (userID < 0)
+            throw new ArgumentOutOfRangeException("user id cannot be negative.");
+
         User? user = FindUser(userID);
 
         if (user != null)
@@ -148,7 +175,7 @@ public class UserService : IUserService
 
             try
             {
-                if (userRepository.UpdateUser(userID, user))
+                if (userRepository.ChangeUserStatus(userID, status))
                     return true;
                 else
                     return false;
