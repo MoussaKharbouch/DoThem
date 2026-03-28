@@ -411,7 +411,7 @@ public class UserRepository : IUserRepository
     public bool UpdateUser(int userID, User newUser)
     {
 
-        // the query that add a new user to database (at the end, we get the id of the new user)
+        // the query that updates a new user to database (at the end, we get the id of the new user)
         string query = @"UPDATE [dbo].[Users]
                                 SET [Username] = @Username
                                     ,[Email] = @Email
@@ -430,7 +430,7 @@ public class UserRepository : IUserRepository
 
                 connection.Open();
 
-                // command to add new user (we add all parameters from the object)
+                // command to update new user (we add all parameters from the object)
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
 
@@ -441,7 +441,7 @@ public class UserRepository : IUserRepository
                     command.Parameters.AddWithValue("@CreationDate", newUser.CreationDate);
                     command.Parameters.AddWithValue("@Status", newUser.Status);
 
-                    // we retrieve the id of the added user
+                    // checking if the update was successful (it can return nothing)
                     if (command.ExecuteNonQuery() > 0)
                         return true;
                     else
@@ -466,7 +466,44 @@ public class UserRepository : IUserRepository
 
     public bool DeleteUser(int userID)
     {
-        return false;
+        
+        // the query that deletes a user from database
+        string query = @"DELETE FROM [dbo].[Users]
+                        WHERE [UserID] = @UserID";
+
+        try
+        {
+
+            /// connecting to string using SqlConnection with the connection string
+            /// we add using for resource management
+            using (SqlConnection connection = new SqlConnection(_ConnectionString))
+            {
+
+                connection.Open();
+
+                // command to delete user by id
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+
+                    // add the parameter
+                    command.Parameters.AddWithValue("@UserID", userID);
+
+                    // checking if the delete was successful (it can return nothing)
+                    if (command.ExecuteNonQuery() > 0)
+                        return true;
+                    else
+                        return false;
+
+                }
+
+            }
+
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Deleting user failed", ex);
+        }
+        
     }
 
     public List<User> GetUsers()
