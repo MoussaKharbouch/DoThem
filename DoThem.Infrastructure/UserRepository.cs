@@ -461,7 +461,46 @@ public class UserRepository : IUserRepository
 
     public bool ChangeUserStatus(int userID, User.UserStatus status)
     {
-        return false;
+        
+        // the query that updates a new user to database (at the end, we get the id of the new user)
+        string query = @"UPDATE [dbo].[Users]
+                                SET [Status] = @Status
+                                WHERE [UserID] = @UserID";
+
+        try
+        {
+
+            /// connecting to string using SqlConnection with the connection string
+            /// we add using for resource management
+            using (SqlConnection connection = new SqlConnection(_ConnectionString))
+            {
+
+                connection.Open();
+
+                // command to update new user (we add all parameters from the object)
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+
+                    // add the parameters
+                    command.Parameters.AddWithValue("@Status", status);
+                    command.Parameters.AddWithValue("@UserID", userID);
+
+                    // checking if the update was successful (it can return nothing)
+                    if (command.ExecuteNonQuery() > 0)
+                        return true;
+                    else
+                        return false;
+
+                }
+
+            }
+
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Changing user's status failed", ex);
+        }
+        
     }
 
     public bool DeleteUser(int userID)
@@ -503,7 +542,7 @@ public class UserRepository : IUserRepository
         {
             throw new Exception("Deleting user failed", ex);
         }
-        
+
     }
 
     public List<User> GetUsers()
