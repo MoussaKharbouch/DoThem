@@ -1,11 +1,32 @@
 # DoThem
 
-**DoThem** is a lightweight task management application built with **.NET Core**.  
-It allows users to create, manage, and track their personal tasks efficiently. Users can add tasks with a title, description, type, and status, update or delete them, and view their tasks—all stored locally for privacy and simplicity.
+DoThem is a structured task management application built with .NET Core, focused on clean architecture, data integrity, and maintainable design.
 
-## Key Features
-- Built with **.NET Core** for cross-platform compatibility.
-- Create, edit, delete, and view personal tasks.
-- Track task status: **Pending**, **In Progress**, or **Completed**.
-- Single user type with unlimited task types.
-- Local storage for secure task management.
+The application allows users to manage their tasks through a clear and organized workflow, supporting task creation, updates, tracking, and deletion, with all data stored locally for simplicity and control.
+
+---
+
+## 🚀 Key Features
+
+- Built with .NET Core following a layered architecture approach  
+- Full task lifecycle management: create, update, delete, and retrieve  
+- Task tracking with clear states: Pending, In Progress, Completed  
+- Flexible task categorization with customizable types  
+- Local data storage ensuring simplicity and user data control  
+
+---
+
+## 🧠 Technical Highlights
+
+- Separation of concerns across Domain, Services, and Infrastructure layers  
+- Data access implemented using ADO.NET with parameterized queries  
+- Emphasis on validation, error handling, and clean code practices  
+- Designed to simulate real-world backend application structure  
+
+---
+
+## 🎯 Purpose
+
+This project focuses on applying backend development principles in a practical context, including structured design, data handling, and maintainable code organization.
+
+---
