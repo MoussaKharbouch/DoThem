@@ -410,7 +410,53 @@ public class UserRepository : IUserRepository
 
     public bool UpdateUser(int userID, User newUser)
     {
-        return false;
+
+        // the query that add a new user to database (at the end, we get the id of the new user)
+        string query = @"UPDATE [dbo].[Users]
+                                SET [Username] = @Username
+                                    ,[Email] = @Email
+                                    ,[Password] = @Password
+                                    ,[CreationDate] = @CreationDate
+                                    ,[Status] = @Status
+                                WHERE [UserID] = @UserID";
+
+        try
+        {
+
+            /// connecting to string using SqlConnection with the connection string
+            /// we add using for resource management
+            using (SqlConnection connection = new SqlConnection(_ConnectionString))
+            {
+
+                connection.Open();
+
+                // command to add new user (we add all parameters from the object)
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+
+                    // add the parameters
+                    command.Parameters.AddWithValue("@Username", newUser.Username);
+                    command.Parameters.AddWithValue("@Email", newUser.Email);
+                    command.Parameters.AddWithValue("@Password", newUser.Password);
+                    command.Parameters.AddWithValue("@CreationDate", newUser.CreationDate);
+                    command.Parameters.AddWithValue("@Status", newUser.Status);
+
+                    // we retrieve the id of the added user
+                    if (command.ExecuteNonQuery() > 0)
+                        return true;
+                    else
+                        return false;
+
+                }
+
+            }
+
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Updating user failed", ex);
+        }
+
     }
 
     public bool ChangeUserStatus(int userID, User.UserStatus status)

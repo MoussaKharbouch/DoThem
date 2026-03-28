@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Domain\\DoThem.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\Moussa\\Desktop\\Software Developement\\Projects\\DoThem\\DoThem.Domain\\DoThem.Domain.csproj",
       "projectName": "DoThem.Domain",
-      "projectPath": "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Domain\\DoThem.Domain.csproj",
+      "projectPath": "C:\\Users\\Moussa\\Desktop\\Software Developement\\Projects\\DoThem\\DoThem.Domain\\DoThem.Domain.csproj",
       "packagesPath": "C:\\Users\\Moussa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Domain\\obj\\",
+      "outputPath": "C:\\Users\\Moussa\\Desktop\\Software Developement\\Projects\\DoThem\\DoThem.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Moussa\\AppData\\Roaming\\NuGet\\NuGet.Config",

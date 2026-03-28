@@ -1393,11 +1393,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.App\\DoThem.App.csproj",
+      "projectUniqueName": "C:\\Users\\Moussa\\Desktop\\Software Developement\\Projects\\DoThem\\DoThem.App\\DoThem.App.csproj",
       "projectName": "DoThem.App",
-      "projectPath": "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.App\\DoThem.App.csproj",
+      "projectPath": "C:\\Users\\Moussa\\Desktop\\Software Developement\\Projects\\DoThem\\DoThem.App\\DoThem.App.csproj",
       "packagesPath": "C:\\Users\\Moussa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.App\\obj\\",
+      "outputPath": "C:\\Users\\Moussa\\Desktop\\Software Developement\\Projects\\DoThem\\DoThem.App\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Moussa\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1414,14 +1414,14 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Domain\\DoThem.Domain.csproj": {
-              "projectPath": "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Domain\\DoThem.Domain.csproj"
+            "C:\\Users\\Moussa\\Desktop\\Software Developement\\Projects\\DoThem\\DoThem.Domain\\DoThem.Domain.csproj": {
+              "projectPath": "C:\\Users\\Moussa\\Desktop\\Software Developement\\Projects\\DoThem\\DoThem.Domain\\DoThem.Domain.csproj"
             },
-            "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Infrastructure\\DoThem.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Infrastructure\\DoThem.Infrastructure.csproj"
+            "C:\\Users\\Moussa\\Desktop\\Software Developement\\Projects\\DoThem\\DoThem.Infrastructure\\DoThem.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\Moussa\\Desktop\\Software Developement\\Projects\\DoThem\\DoThem.Infrastructure\\DoThem.Infrastructure.csproj"
             },
-            "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Services\\DoThem.Services.csproj": {
-              "projectPath": "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Services\\DoThem.Services.csproj"
+            "C:\\Users\\Moussa\\Desktop\\Software Developement\\Projects\\DoThem\\DoThem.Services\\DoThem.Services.csproj": {
+              "projectPath": "C:\\Users\\Moussa\\Desktop\\Software Developement\\Projects\\DoThem\\DoThem.Services\\DoThem.Services.csproj"
             }
           }
         }

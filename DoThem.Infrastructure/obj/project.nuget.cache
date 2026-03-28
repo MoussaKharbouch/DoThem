@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R2MttEbmteE=",
+  "dgSpecHash": "fXzNY5J2I9c=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Moussa\\Documents\\GitHub\\DoThem\\DoThem.Infrastructure\\DoThem.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\Moussa\\Desktop\\Software Developement\\Projects\\DoThem\\DoThem.Infrastructure\\DoThem.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Moussa\\.nuget\\packages\\azure.core\\1.50.0\\azure.core.1.50.0.nupkg.sha512",
     "C:\\Users\\Moussa\\.nuget\\packages\\azure.identity\\1.17.1\\azure.identity.1.17.1.nupkg.sha512",
