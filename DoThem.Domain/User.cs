@@ -14,10 +14,7 @@ public class User
     public string Username
     {
 
-        get
-        {
-            return _Username;
-        }
+        get { return _Username; }
 
         set
         {
@@ -35,15 +32,11 @@ public class User
 
     }
 
-    //Email can be used once in the system else if the account is expired
     private string _Email = string.Empty;
     public string Email
     {
 
-        get
-        {
-            return _Email;
-        }
+        get { return _Email; }
 
         set
         {
@@ -68,10 +61,7 @@ public class User
     public string Password
     {
 
-        get
-        {
-            return _Password;
-        }
+        get { return _Password; }
 
         set
         {
@@ -91,19 +81,17 @@ public class User
     private DateTime _CreationDate;
     private static readonly DateTime MinCreationDate = new DateTime(2000, 1, 1);
 
-    public DateTime CreationDate {
+    public DateTime CreationDate
+    {
 
-        get
-        {
-            return _CreationDate;
-        }
+        get { return _CreationDate; }
 
         private set
         {
 
-            if(value > DateTime.UtcNow)
+            if (value > DateTime.UtcNow)
                 throw new ArgumentException("Creation date cannot be in the future.");
-            if(value < MinCreationDate)
+            if (value < MinCreationDate)
                 throw new ArgumentException("Creation date cannot be older than the year of 2000.");
 
             _CreationDate = value;
