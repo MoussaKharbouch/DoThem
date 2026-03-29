@@ -3,6 +3,20 @@ using System.Linq;
 
 namespace DoThem.Domain;
 
+/// <summary>
+/// The User class represents a user in the system.
+/// It has properties such as UserID, Username, Email, Password, CreationDate, and Status.
+/// The UserID property is an integer that serves as the primary key for the users table.
+/// The Username property is a string that must be short, unique, and cannot contain spaces.
+/// It cannot be empty or longer than 100 characters.
+/// The Email property is a string that must be a valid email format (ending with "@gmail.com"),
+/// cannot contain spaces, and cannot be empty or longer than 100 characters.
+/// The Password property is a string that must be encrypted, cannot be empty,
+/// and cannot be longer than 50 characters.
+/// The CreationDate property is a DateTime that represents the date and time when the user was created.
+/// It cannot be in the future and cannot be older than the year 2000.
+/// The Status property is an enum that represents the status of the user (Active, Expired, Banned).
+/// </summary>
 public class User
 {
 
