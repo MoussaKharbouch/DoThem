@@ -6,8 +6,6 @@ namespace DoThem.Infrastructure;
 public interface ITaskRepository
 {
 
-    // we code like user interface but we will change it to task interface
-
     /// <summary>
     /// find task by task id
     /// </summary>
@@ -60,6 +58,5 @@ public interface ITaskRepository
     /// get tasks by user id and task type id
     /// </summary>
     List<TaskItem> GetTasks(int userID, int taskTypeID);
-
 
 }
