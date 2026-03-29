@@ -13,7 +13,7 @@ public interface IUserRepository
     User? FindUser(int userID);
 
     /// <summary>
-    /// find user by username and password
+    /// find user by username
     /// </summary>
     User? FindUser(string username);
 

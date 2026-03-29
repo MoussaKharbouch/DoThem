@@ -2,17 +2,20 @@ using System;
 
 namespace DoThem.Domain;
 
+// we cannot name this class "Task" because it will conflict with System.Threading.Tasks.Task, so we will name it "TaskItem"
+
 /// <summary>
-/// The Task class represents a task in the system.
+/// The TaskItem class represents a task in the system.
 /// It has properties such as Title, Description, TaskTypeId, CreationDate, DueDate, and TaskStatus.
-/// The Title property is required and cannot be empty or longer than 100 characters.
+/// The Title property is required and cannot be empty or longer than 100 characters,
+/// it cannot contain spaces and must be unique for the same user and task type.
 /// The Description property is optional but cannot be longer than 300 characters.
 /// The TaskTypeId property is an integer that represents the type of the task.
 /// The CreationDate property is a DateTime that represents the date and time when the task was created. It cannot be in the future.
 /// The DueDate property is a DateTime that represents the date and time when the task is due. It cannot be before the CreationDate.
 /// The TaskStatus property is an enum that represents the status of the task (NotStarted, InProgress, Completed).
 /// </summary>
-public class Task
+public class TaskItem
 {
 
     public int TaskId { get; set; }
@@ -84,8 +87,9 @@ public class Task
     }
 
     public enum TaskStatus { NotStarted = 1, InProgress = 2, Completed = 3 }
+    public TaskStatus Status { get; set; }
 
-    public Task(int TaskId, string Title, string Description, int TaskTypeId, DateTime CreationDate, DateTime DueDate)
+    public TaskItem(int TaskId, string Title, string Description, int TaskTypeId, DateTime CreationDate, DateTime DueDate, TaskStatus Status)
     {
         this.TaskId = TaskId;
         this.Title = Title;
@@ -93,6 +97,7 @@ public class Task
         this.TaskTypeId = TaskTypeId;
         this.CreationDate = CreationDate;
         this.DueDate = DueDate;
+        this.Status = Status;
     }
 
 }

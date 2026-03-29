@@ -111,6 +111,8 @@ public class UserService : IUserService
         return userRepository.DoesUserExist(userID);
     }
 
+    // here we will check if the username already exists in the system,
+    // and if email already exists in the system
     public int? AddUser(User user)
     {
         ValidateUserFields(user);
@@ -118,6 +120,8 @@ public class UserService : IUserService
         return userRepository.AddUser(user);
     }
 
+    // here we will check if the username already exists in the system,
+    // and if email already exists in the system
     public bool UpdateUser(int userID, User newUser)
     {
 
