@@ -3,7 +3,7 @@ using DoThem.Domain;
 
 namespace DoThem.Infrastructure;
 
-public interface ITaskRepository
+public interface ITaskItemRepository
 {
 
     /// <summary>
