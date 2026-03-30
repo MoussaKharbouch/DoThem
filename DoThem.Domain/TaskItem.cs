@@ -18,7 +18,7 @@ namespace DoThem.Domain;
 public class TaskItem
 {
 
-    public int TaskId { get; set; }
+    public int TaskID { get; set; }
 
     private string _Title = string.Empty;
     public string Title
@@ -71,8 +71,8 @@ public class TaskItem
         
     }
 
-    private DateTime _DueDate;
-    public DateTime DueDate
+    private DateTime? _DueDate;
+    public DateTime? DueDate
     {
 
         get { return _DueDate; }
@@ -89,9 +89,9 @@ public class TaskItem
     public enum TaskStatus { NotStarted = 1, InProgress = 2, Completed = 3 }
     public TaskStatus Status { get; set; }
 
-    public TaskItem(int TaskId, string Title, string Description, int TaskTypeId, DateTime CreationDate, DateTime DueDate, TaskStatus Status)
+    public TaskItem(int TaskID, string Title, string Description, int TaskTypeId, DateTime CreationDate, DateTime? DueDate, TaskStatus Status)
     {
-        this.TaskId = TaskId;
+        this.TaskID = TaskID;
         this.Title = Title;
         this.Description = Description;
         this.TaskTypeId = TaskTypeId;

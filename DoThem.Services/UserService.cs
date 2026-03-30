@@ -138,7 +138,7 @@ public class UserService : IUserService
             throw new ArgumentOutOfRangeException("user id cannot be negative.");
 
         ValidateUserFields(newUser);
-
+    
         // we can't hash the password, maybe the user doesn't want to change it, so we will check if the password is the same as the old one, if it is, we will keep it, otherwise we will hash it
         User? oldUser = FindUser(userID);
         if (oldUser == null)

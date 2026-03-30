@@ -24,7 +24,7 @@ namespace DoThem.App
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        static public string HashPassword(string password)
+        static string HashPassword(string password)
         {
             using SHA256 sha = SHA256.Create();
             byte[] bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(password));
@@ -34,7 +34,7 @@ namespace DoThem.App
         /// <summary>
         /// Prints user's information with colors
         /// </summary>
-        public static void PrintUserInfo(User? user)
+        static void PrintUserInfo(User? user)
         {
 
             if (user == null)
@@ -116,7 +116,7 @@ namespace DoThem.App
 
         }
 
-        public static void TestUserPart(IUserRepository userRepository)
+        static void TestUsersPart(IUserRepository userRepository)
         {
 
             // we create the service here because we need it for all the tests, and we don't want to create it in each test function
@@ -290,6 +290,117 @@ namespace DoThem.App
 
         }
 
+        /// <summary>
+        /// Prints task's information with colors
+        /// </summary>
+        static void PrintTaskInfo(TaskItem? task)
+        {
+
+            if (task == null)
+            {
+                Console.WriteLine("Task is null.");
+                return;
+            }
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("===== Task Information =====");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("TaskID: ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(task.TaskID);
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("Title: ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(task.Title);
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("Description: ");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(task.Description);
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("CreationDate: ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(task.CreationDate.ToString("yyyy-MM-dd HH:mm:ss"));
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("DueDate: ");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(task.DueDate?.ToString("yyyy-MM-dd HH:mm:ss"));
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("Status: ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(task.Status);
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("============================");
+
+            Console.ResetColor();
+        }
+
+        static void TestFindTaskFunction(int taskID, ITaskItemRepository taskItemRepository)
+        {
+
+            TaskItem? task = null;
+
+            try
+            {
+                task = new TaskItemService(taskItemRepository).FindTask(taskID);
+                PrintTaskInfo(task);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+        }
+
+        static void TestTasksPart(ITaskItemRepository taskItemRepository)
+        {
+
+            // we create the service here because we need it for all the tests, and we don't want to create it in each test function
+            TaskItemService taskItemService = new TaskItemService(taskItemRepository);
+
+            // we will test all the functions of the task service, and we will print the results with colors for better visualization
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\n======================================");
+            Console.WriteLine("         TASK MODULE TEST");
+            Console.WriteLine("======================================\n");
+            Console.ResetColor();
+
+            try
+            {
+
+                /// 1. Find Task by ID
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine(">> [1] Finding Task by ID...");
+                Console.ResetColor();
+
+                TestFindTaskFunction(13, taskItemRepository);
+
+                // other tests will be added later when we implement the functions
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\nALL TESTS COMPLETED SUCCESSFULLY!");
+                Console.ResetColor();
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n❌ ERROR OCCURRED:");
+                Console.WriteLine(ex.Message);
+                Console.ResetColor();
+            }
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\n======================================\n");
+            Console.ResetColor();
+
+        }
+
         static void Main(string[] args)
         {
 
@@ -297,11 +408,17 @@ namespace DoThem.App
             /// that's really important, by changing repository we can change how we deal with data
             /// we can use another RDBMS such as: sqllite, postgresql...
             /// and we can use another provider such as: ef core
-
+            
+            string connectionString = ConfigurationManager.ConnectionStrings["DothemDB"].ToString();
             /// new user repository, we get the connection string from app.config for security
             /// we have used configuration manager, you have to download some packages
-            IUserRepository userRepository = new UserRepository(ConfigurationManager.ConnectionStrings["DothemDB"].ToString());
-            TestUserPart(userRepository);
+            
+            // IUserRepository userRepository = new UserRepository(connectionString);
+            // TestUsersPart(userRepository);
+
+            /// new task item repository, we get the connection string from app.config for security
+            ITaskItemRepository taskItemRepository = new TaskItemRepository(connectionString);
+            TestTasksPart(taskItemRepository);
 
             Console.WriteLine("Press Any Key To Close...");
             Console.Read();
