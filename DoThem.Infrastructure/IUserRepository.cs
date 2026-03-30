@@ -28,6 +28,16 @@ public interface IUserRepository
     bool DoesUserExist(int userID);
 
     /// <summary>
+    /// check if username is already used by other user
+    /// </summary>
+    bool IsUsernameUsed(string username);
+    
+    /// <summary>
+    /// check if email is already used by other user
+    /// </summary>
+    bool IsEmailUsed(string email);
+    
+    /// <summary>
     /// add new user
     /// </summary>
     /// <returns>

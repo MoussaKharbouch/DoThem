@@ -303,6 +303,88 @@ public class UserRepository : IUserRepository
 
     }
 
+    public bool IsUsernameUsed(string username)
+    {
+
+        // query to retrieve data using sql statement with user id
+        string query = @"SELECT 1 FROM Users
+                        Where Username = @Username";
+
+        try
+        {
+
+            /// connect to database
+            /// we have used "using" in every database operation
+            /// for resource management
+            using (SqlConnection connection = new SqlConnection(_ConnectionString))
+            {
+
+                // open the connection to database
+                connection.Open();
+
+                // the command that executes the query using the username parameter
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+
+                    command.Parameters.AddWithValue("@Username", username);
+
+                    // use scalar to retrieve single value from database
+                    object result = command.ExecuteScalar();
+                    return (result != null && result != DBNull.Value);
+
+                }
+
+            }
+
+        }
+        catch (SqlException ex)
+        {
+            throw new Exception("Checking if username is used failed.", ex);
+        }
+
+    }
+
+    public bool IsEmailUsed(string email)
+    {
+
+        // query to retrieve data using sql statement with user id
+        string query = @"SELECT 1 FROM Users
+                        Where Email = @Email";
+
+        try
+        {
+
+            /// connect to database
+            /// we have used "using" in every database operation
+            /// for resource management
+            using (SqlConnection connection = new SqlConnection(_ConnectionString))
+            {
+
+                // open the connection to database
+                connection.Open();
+
+                // the command that executes the query using the email parameter
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+
+                    command.Parameters.AddWithValue("@Email", email);
+
+                    // use scalar to retrieve single value from database
+                    object result = command.ExecuteScalar();
+                    return (result != null && result != DBNull.Value);
+
+                }
+
+            }
+
+        }
+        catch (SqlException ex)
+        {
+            throw new Exception("Checking if email is used failed.", ex);
+        }
+
+    }
+    
     public int? AddUser(User user)
     {
 

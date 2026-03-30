@@ -115,9 +115,17 @@ public class UserService : IUserService
     // and if email already exists in the system
     public int? AddUser(User user)
     {
+
         ValidateUserFields(user);
+
+        if(userRepository.IsUsernameUsed(user.Username))
+            throw new ArgumentException("Username already exists in the system.");
+        if(userRepository.IsEmailUsed(user.Email))
+            throw new ArgumentException("Email already exists in the system.");
+
         user.Password = HashPassword(user.Password);
         return userRepository.AddUser(user);
+
     }
 
     // here we will check if the username already exists in the system,
@@ -135,6 +143,10 @@ public class UserService : IUserService
         User? oldUser = FindUser(userID);
         if (oldUser == null)
             throw new ArgumentException("User with the given ID does not exist.");
+        if (oldUser.Username != newUser.Username && userRepository.IsUsernameUsed(newUser.Username))
+            throw new ArgumentException("Username already exists in the system.");
+        if (oldUser.Email != newUser.Email && userRepository.IsEmailUsed(newUser.Email))
+            throw new ArgumentException("Email already exists in the system.");
         if (oldUser.Password != newUser.Password)
             newUser.Password = HashPassword(newUser.Password);
 
