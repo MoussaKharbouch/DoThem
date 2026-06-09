@@ -20,6 +20,8 @@ public class TaskItem
 
     public int TaskID { get; set; }
 
+    public int UserID { get; set; }
+
     private string _Title = string.Empty;
     public string Title
     {
@@ -89,9 +91,10 @@ public class TaskItem
     public enum TaskStatus { NotStarted = 1, InProgress = 2, Completed = 3 }
     public TaskStatus Status { get; set; }
 
-    public TaskItem(int TaskID, string Title, string Description, int TaskTypeId, DateTime CreationDate, DateTime? DueDate, TaskStatus Status)
+    public TaskItem(int TaskID, int UserID, string Title, string Description, int TaskTypeId, DateTime CreationDate, DateTime? DueDate, TaskStatus Status)
     {
         this.TaskID = TaskID;
+        this.UserID = UserID;
         this.Title = Title;
         this.Description = Description;
         this.TaskTypeId = TaskTypeId;

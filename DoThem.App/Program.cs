@@ -379,7 +379,7 @@ namespace DoThem.App
                 Console.WriteLine(">> [1] Finding Task by ID...");
                 Console.ResetColor();
 
-                TestFindTaskFunction(13, taskItemRepository);
+                TestFindTaskFunction(10, taskItemRepository);
 
                 // other tests will be added later when we implement the functions
 
