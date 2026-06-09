@@ -394,44 +394,6 @@ This project teaches:
    - Constraints
    - Indexing
 
----
-
-## 📈 Roadmap
-
-### Phase 1: Foundation ✅
-- [x] User management module
-- [x] Task management module
-- [x] TaskType management module
-- [x] Comprehensive validation
-
-### Phase 2: API Layer (In Progress)
-- [ ] ASP.NET Core REST API
-- [ ] Swagger/OpenAPI documentation
-- [ ] Request/response DTOs
-- [ ] Error handling middleware
-
-### Phase 3: Authentication (Planned)
-- [ ] JWT token generation
-- [ ] Bearer token validation
-- [ ] Refresh token mechanism
-- [ ] Authorization policies
-
-### Phase 4: Advanced Features (Planned)
-- [ ] Task reminders
-- [ ] Task notifications
-- [ ] Task history/auditing
-- [ ] Task sharing between users
-- [ ] Task priorities
-- [ ] Task tags/categories
-
-### Phase 5: Frontend (Planned)
-- [ ] React/Vue SPA
-- [ ] User dashboard
-- [ ] Task management UI
-- [ ] Real-time updates
-
----
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please follow these guidelines:
@@ -508,17 +470,6 @@ var task = service.FindTask(taskId: 5);
 - Verify IDs exist before operations
 - Check return values from Find methods
 
----
-
-## 📞 Support
-
-- 📧 Email: support@dothem.dev
-- 💬 Discord: [Community Link]
-- 🐙 Issues: [GitHub Issues]
-- 📖 Docs: [Full Documentation]
-
----
-
 ## 📄 License
 
 This project is licensed under the **MIT License** - see the LICENSE file for details.
@@ -543,18 +494,7 @@ copies or substantial portions of the Software.
 
 **Moussa Kharbouch**
 - GitHub: [@MoussaKharbouch](https://github.com/MoussaKharbouch)
-- Email: moussa@example.com
-
----
-
-## 🙏 Acknowledgments
-
-- .NET Foundation for amazing framework
-- SQL Server team for robust database
-- C# community for best practices inspiration
-- Contributors who help improve this project
-
----
+- Email: moussa5arbouch@gmail.com
 
 ## 📊 Project Statistics
 
